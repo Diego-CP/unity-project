@@ -1,0 +1,89 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Enemy : Mover {
+    // XP Value of defeating this enemy
+    public int xpValue = 1;
+
+    // Aggro radius
+    public float triggerLength = 0.3f;
+
+    // Distance it will chase the player for
+    public float chaseLength = 1.0f;
+
+    // Is it chasing the player?
+    private bool chasing;
+
+    // Is it colliding with the player?
+    private bool collidingWithPlayer;
+    private Transform playerTransform;
+    private Vector3 startingPosition;
+
+    public ContactFilter2D filter;
+    private BoxCollider2D hitbox;
+
+    // This class cannot inherit from Collidable class, so we have to copy the logic
+    // Array of things it is colliding with
+    private Collider2D[] hits = new Collider2D[10];
+
+    protected override void Start() {
+        base.Start();
+        // Assign values to each variable
+        // Assign the position of the player thrrough GameManager
+        playerTransform = GameManager.instance.player.transform;
+        startingPosition = transform.position;
+        // Get the box collider from the first child of the enemy (always Hitbox)
+        hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
+    }
+
+    private void FixedUpdate() {
+        // Determine if the player is in aggro range
+        if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLength) {
+            // Set the value of chasing depending on if the player is inside triggerLength
+            if(Vector3.Distance(playerTransform.position, startingPosition) < triggerLength) 
+                chasing = true;
+            
+            if (chasing) {
+                // If the enemy is not colliding with the player, move towards him
+                if(!collidingWithPlayer) {
+                    UpdateMotor((playerTransform.position - transform.position).normalized);
+                }
+            } else {
+                // Return to strating position
+                UpdateMotor(startingPosition - transform.position);
+            }
+        } else {
+            // Return to starting position and stop chasing
+            UpdateMotor(startingPosition - transform.position);
+            chasing = false;
+        }
+
+        // Check for overlap with Player 
+        collidingWithPlayer = false;
+        // Look for other colliders inside of this objetcs' collider and place it in hits array
+        boxCollider.OverlapCollider(filter, hits);
+
+        for (int i = 0; i < hits.Length; i++) {
+            // When nothing is hit, continue to the next frame
+            if (hits[i] == null) 
+                continue;
+
+            // If something is hit, 
+            if (hits[i].tag == "Fighter" && hits[i].name == "Player"){
+                collidingWithPlayer = true; 
+            }
+
+            // Clear the array
+            hits[i] = null;
+        }
+    }
+
+    protected override void Death() {
+        // Destroy this Game Object
+        Destroy(gameObject);
+        GameManager.instance.experience += xpValue;
+        GameManager.instance.ShowText("+ " + xpValue + " XP", 25, Color.green, transform.position, Vector3.up * 20, 1.5f);
+    }
+
+}
