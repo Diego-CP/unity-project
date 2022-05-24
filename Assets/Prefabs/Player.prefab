@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitpoint: 10
   maxHitpoint: 10
-  pushRecoverySpeed: 0.2
+  pushRecoverySpeed: 0.5
   ySpeed: 0.75
   xSpeed: 1
   faith: 10

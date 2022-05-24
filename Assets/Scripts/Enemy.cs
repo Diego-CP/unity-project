@@ -38,9 +38,9 @@ public class Enemy : Mover {
     }
 
     private void FixedUpdate() {
-        // Determine if the player is in aggro range
+        // Determine if the player is in chase length
         if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLength) {
-            // Set the value of chasing depending on if the player is inside triggerLength
+            // Set the value of chasing depending on if the player is inside aggro range
             if(Vector3.Distance(playerTransform.position, startingPosition) < triggerLength) 
                 chasing = true;
             
@@ -50,9 +50,10 @@ public class Enemy : Mover {
                     UpdateMotor((playerTransform.position - transform.position).normalized);
                 }
             } else {
-                // Return to strating position
+                // If the enemy is not chasing, return to starting position
                 UpdateMotor(startingPosition - transform.position);
             }
+        // If the player is not in chase length, return to starting position
         } else {
             // Return to starting position and stop chasing
             UpdateMotor(startingPosition - transform.position);
