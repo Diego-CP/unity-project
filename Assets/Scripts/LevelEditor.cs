@@ -6,15 +6,46 @@ using System.Linq;
 
 public class LevelEditor : MonoBehaviour
 {
-   [SerializeField] Tilemap currentTilemap;
-   [SerializeField] TileBase currentTile;
 
+    [SerializeField] Tilemap defaultTilemap;
+    Tilemap currentTilemap
+    {
+        //get current tile layer else return default
+        get
+        {
+            if(Level_Manager.instance.layers.TryGetValue((int)Level_Manager.instance.tiles[selectedTileIndex].tilemap, out Tilemap tilemap))
+            {
+                return tilemap;
+                
+            }
+            else
+            {
+                return defaultTilemap;
+                
+            }
+            Debug.Log(tilemap);
+        }
+    }
+    //get current tile
+    TileBase currentTile
+    {
+        get
+        {
+            
+            return Level_Manager.instance.tiles[selectedTileIndex].tile;
+        }
+    }
+    
+   
    [SerializeField] Camera cam;
 
+    int selectedTileIndex;
+
+    //tile placement based on mouse clicks
     private void Update() {
         Vector3Int pos = currentTilemap.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition));
         
-        if(Input.GetMouseButton(0)) {
+        if(Input.GetMouseButton(0)) {//pace tiles on current pos
             PlaceTile(pos);
         }
         
@@ -22,8 +53,28 @@ public class LevelEditor : MonoBehaviour
             DeleteTile(pos);
         }
 
-        
-    }
+        //select tiles with keyboard numpad
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+           
+            selectedTileIndex++;
+            if (selectedTileIndex >= Level_Manager.instance.tiles.Count)
+                selectedTileIndex = 0;
+            Debug.Log(Level_Manager.instance.tiles[selectedTileIndex].name);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            selectedTileIndex--;
+            if (selectedTileIndex < 0) 
+                selectedTileIndex = Level_Manager.instance.tiles.Count - 1;
+            Debug.Log(Level_Manager.instance.tiles[selectedTileIndex].name);
+        }
+
+
+
+
+
+        }
     void PlaceTile(Vector3Int pos)
     {
        currentTilemap.SetTile(pos, currentTile);
