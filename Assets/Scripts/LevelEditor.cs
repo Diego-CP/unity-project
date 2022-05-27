@@ -41,6 +41,9 @@ public class LevelEditor : MonoBehaviour
 
     int selectedTileIndex;
 
+
+    
+
     //tile placement based on mouse clicks
     private void Update() {
         Vector3Int pos = currentTilemap.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition));
