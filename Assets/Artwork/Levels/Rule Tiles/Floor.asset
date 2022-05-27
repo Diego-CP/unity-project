@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e6c622b4fbf6f4c9661e32751baf9f, type: 3}
   m_Name: Floor
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 59e78414401c07f409c86aa2e9fa8dda, type: 2}
+  tile: {fileID: 11400000, guid: 87103285b4c343946894ade0bb2e9e24, type: 2}
   id: Floor
   tilemap: 0
