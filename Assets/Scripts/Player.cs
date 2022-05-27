@@ -4,10 +4,29 @@ using UnityEngine;
 
 public class Player : Mover {
     private bool isAlive = true;
-
     public int faith;
     public int maxFaith;
+    private Animator anim;
 
+    private void Awake(){
+        anim = GetComponent<Animator>();
+
+    }
+
+    public void Update(){
+        
+    float horizontalInput = Input.GetAxis("Horizontal");
+    anim.SetBool("Run", horizontalInput != 0);
+
+    if(Input.GetKeyDown(KeyCode.Space)){
+            Attack();
+        }
+    }
+
+
+    void Attack(){
+        anim.SetTrigger("Swing");
+    }
     // Override the function to recieve damage from Fighter to include OnHitpointChange
     protected override void RecieveDamage(Damage dmg)
     {

@@ -21,9 +21,8 @@ public class Weapon : Collidable
     // Timestamp of last swing
     private float lastSwing;
 
-    // Call an animator controller
-
     private Animator anim;
+
 
     protected override void Start() {
         base.Start();
@@ -41,7 +40,8 @@ public class Weapon : Collidable
             if (Time.time - lastSwing > cooldown) {
                 // Reset lastSwing as current time
                 lastSwing = Time.time;
-                Swing();
+                anim.SetTrigger("Swing");
+
             }
         }
     }
@@ -60,9 +60,7 @@ public class Weapon : Collidable
                 coll.SendMessage("RecieveDamage", dmg);
             }
         }
+        
     }
 
-    private void Swing() {
-        anim.SetTrigger("Swing");
-    }
 }
