@@ -109,9 +109,10 @@ public class GameManager : MonoBehaviour
         
         // If the scene is not a menu scene, load the player at the spawn point
         if(s.name != "Death" && s.name != "Win" && s.name != "Menu")
+        {
             // Every time a scene is loaded, teleport the player to Spawnpoint
             player.transform.position = GameObject.Find("SpawnPoint").transform.position;
-        
+        }        
 
         Debug.Log("Loaded");
     }

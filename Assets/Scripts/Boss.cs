@@ -12,4 +12,10 @@ public class Boss : Enemy {
             fireballs[i].position = transform.position + new Vector3(-Mathf.Cos(Time.time * fireballSpeed[i]) * distance, Mathf.Sin(Time.time * fireballSpeed[i]) * distance, 0);
         }
     }
+
+    protected override void Death()
+    {
+        base.Death();
+        GameManager.instance.player.GetComponent<VictoryCheck>().DeadBoss(gameObject);
+    }
 }

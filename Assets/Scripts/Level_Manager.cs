@@ -8,6 +8,10 @@ using System.IO;
 public class Level_Manager : MonoBehaviour
 {
     public static Level_Manager instance;
+    public ItemController[] itemButtons;
+    public GameObject[] itemPrefabs;
+    public int currentButton;
+
     private void Awake()
     {
         
@@ -41,7 +45,15 @@ public class Level_Manager : MonoBehaviour
 
     private void Update()
     {
-   
+        Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+        if(Input.GetMouseButtonDown(0) && itemButtons[currentButton].clicked)
+        {
+            itemButtons[currentButton].clicked = false;
+            Instantiate(itemPrefabs[currentButton], new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
+
+        }
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.A)) Savelevel();
     
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.M)) LoadLevel();
