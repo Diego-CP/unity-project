@@ -11,6 +11,7 @@ public class ItemController : MonoBehaviour
     public int quantity;
     public TextMeshProUGUI quantityText;
     public bool clicked = false;
+    public bool limited = false;
     private Level_Manager editor;
 
     void Start()
@@ -24,18 +25,27 @@ public class ItemController : MonoBehaviour
 
     public void ButtonClicked()
     {
-        if(quantity > 0)
+        if(quantity > 0 && limited)
         {
             Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
             clicked = true;
-            
-            
 
+
+            Debug.Log("limited");
             quantity--;
             quantityText.text = quantity.ToString();
             editor.currentButton = ID;
+        }
+        else if(!limited)
+        {
+            Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+            Debug.Log("unlimited");
+            clicked = true;
+            editor.currentButton = ID;
+
         }
        
     }
