@@ -106,6 +106,9 @@ MonoBehaviour:
   xSpeed: 1
   faith: 10
   maxFaith: 10
+  projectile: {fileID: 4830054023962619268, guid: 4b48b2db7f92cf3409701a290522c26a, type: 3}
+  shotPoint: {fileID: 5547929422789981309, guid: 6861a93e3edca4045a2db958341dae6b, type: 3}
+  direction: {x: 0, y: 0, z: 0, w: 0}
 --- !u!61 &8994360011841654349
 BoxCollider2D:
   m_ObjectHideFlags: 0

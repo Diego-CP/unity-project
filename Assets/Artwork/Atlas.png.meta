@@ -1681,7 +1681,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1702,7 +1702,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1710,6 +1710,27 @@ TextureImporter:
       bones: []
       spriteID: ce0a3afc757dc6d41a0598418378cd3d
       internalID: -548131826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_0
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 119
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5846568524b0af44e804514a5be23af9
+      internalID: -1769854432
       vertices: []
       indices: 
       edges: []
@@ -1732,6 +1753,7 @@ TextureImporter:
       torch_0: 1755856615
       stairs_1: 145657251
       weapon_2: -592268461
+      projectile_0: -1769854432
       floor_7: 677024868
       wall_1: -1962876383
       floor_5: 789142048

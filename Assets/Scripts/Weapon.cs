@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : Collidable
-{
+public class Weapon : Collidable {
     // Amount of damage done to the enemy
     public int damagePoint = 1;
 
@@ -12,6 +11,7 @@ public class Weapon : Collidable
 
     // Level of the weapon
     public int weaponLevel = 0;
+    
     // Have a sprite renderer to change the sprite of the weapon with level
     private SpriteRenderer spriteRenderer;
 
@@ -41,7 +41,6 @@ public class Weapon : Collidable
                 // Reset lastSwing as current time
                 lastSwing = Time.time;
                 anim.SetTrigger("Swing");
-
             }
         }
     }
@@ -60,7 +59,5 @@ public class Weapon : Collidable
                 coll.SendMessage("RecieveDamage", dmg);
             }
         }
-        
     }
-
 }
