@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadState;
     }
 
+    private void Start()
+    {
+        spawnPoint = GameObject.Find("SpawnPoint");
+        player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
+    }
+
     // Game resources
     public List<Sprite> playerSprites;
     public List<Sprite> weaponSprites;
@@ -36,6 +42,7 @@ public class GameManager : MonoBehaviour
     //public List<int> xpTable;
 
     // References
+    public GameObject spawnPoint;
     public Player player;
     public FloatingTextManager floatingTextManager;
     public RectTransform hitpointBar;

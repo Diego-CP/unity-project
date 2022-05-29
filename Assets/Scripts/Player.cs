@@ -8,10 +8,18 @@ public class Player : Mover
     public int faith;
     public int maxFaith;
     private Animator anim;
+    public GameObject Weapon;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        Invoke("getWeapon", 0);
+    }
+
+    private void getWeapon() {
+        GameObject wp = GameObject.Instantiate(Weapon, transform.position, Quaternion.identity) as GameObject;
+        wp.name = "Weapon";
+        wp.transform.parent = gameObject.transform;
     }
 
     public void Update()
