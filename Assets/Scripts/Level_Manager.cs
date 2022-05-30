@@ -12,6 +12,18 @@ public class Level_Manager : MonoBehaviour
     public GameObject[] itemPrefabs;
     public int currentButton;
 
+    public string saveAssetTag1 = "Game";
+    public string saveAssetTag2 = "Fighter";
+    private GameObject[] assetsToSave;
+    [SerializeField] private string[] assetNames;
+    [SerializeField] private Vector3[] assetPositions;
+    public GameObject[] possibleObjects;
+ 
+
+
+
+
+
     private void Awake()
     {
         
@@ -39,6 +51,7 @@ public class Level_Manager : MonoBehaviour
         Floor = 0,
         Design = 1,
         Collision = 5
+        
     }
 
 
@@ -64,7 +77,24 @@ public class Level_Manager : MonoBehaviour
     
         LevelData levelData = new LevelData();
 
-       
+
+        
+        GameObject[] assets1 = GameObject.FindGameObjectsWithTag(saveAssetTag1); 
+        GameObject[] assets2 = GameObject.FindGameObjectsWithTag(saveAssetTag2);
+        //GameObject[] assets3 = GameObject.FindGameObjectsWithTag("MainCamera");
+        assetsToSave = assets1.Concat(assets2).ToArray();//.Concat(assets3).ToArray();
+        
+
+        foreach (var item in assetsToSave)
+        {
+            levelData.items.Add(new itemData(item.name));
+        }
+
+        for (int j = 0; j < assetsToSave.Length; j++)
+        {
+            levelData.items[j].assetPosition = assetsToSave[j].transform.position;
+        }
+
         foreach (var item in layers.Keys)//add layers to layer data
         {
             levelData.layers.Add(new LayerData(item));
@@ -105,6 +135,12 @@ public class Level_Manager : MonoBehaviour
 
         //debug
         Debug.Log("Level was saved");
+        
+    }
+
+    void CreateAsset(LevelData level)
+    {
+
     }
 
     void LoadLevel()
@@ -125,10 +161,21 @@ public class Level_Manager : MonoBehaviour
 
                 tilemap.SetTile(new Vector3Int(data.poses_x[i], data.poses_y[i], 0), tiles.Find(t => t.name == data.tiles[i]).tile);
             }
-        }    
-        
+        }
 
-       
+
+        foreach (var item in levelData.items)
+        {
+            Debug.Log(item.assetName);
+            for (int i = 0; i < possibleObjects.Length; i++)
+            {
+                if (item.assetName.Contains(possibleObjects[i].name))
+                {
+                    Instantiate(possibleObjects[i], item.assetPosition, Quaternion.identity);
+                }
+            }
+        }
+
         Debug.Log("Level was loaded");
     }
     
@@ -138,6 +185,7 @@ public class Level_Manager : MonoBehaviour
 public class LevelData
 {
     public List<LayerData> layers = new List<LayerData>();
+    public List<itemData> items = new List<itemData>();
 }
 
 [System.Serializable]
@@ -151,5 +199,16 @@ public class LayerData
     public LayerData(int id)
     {
         layer_id = id;
+    }
+}
+
+[System.Serializable]
+public class itemData
+{
+    public string assetName;
+    public Vector3 assetPosition;
+    public itemData(string id)
+    {
+        assetName = id;
     }
 }

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 349979227687404472}
   - component: {fileID: 349979227687404479}
   - component: {fileID: 6865531046411755671}
+  - component: {fileID: 2740954358050452188}
   m_Layer: 0
   m_Name: HealingPotion
-  m_TagString: Untagged
+  m_TagString: Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,3 +140,16 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   hpAmount: 5
+--- !u!114 &2740954358050452188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349979227687404477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c74d2e70401e24b93f533abc61c737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 2

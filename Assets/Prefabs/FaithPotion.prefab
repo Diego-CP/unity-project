@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8606796305663108716}
   - component: {fileID: 8606796305663108715}
   - component: {fileID: 4025294458427456924}
+  - component: {fileID: -4724159081710670381}
   m_Layer: 0
   m_Name: FaithPotion
-  m_TagString: Untagged
+  m_TagString: Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,3 +140,16 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   faithAmount: 5
+--- !u!114 &-4724159081710670381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8606796305663108713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c74d2e70401e24b93f533abc61c737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 3

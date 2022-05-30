@@ -35,7 +35,7 @@ public class Weapon : Collidable
         base.Update();
 
         // Check if the player can swing (using spacebar)
-        if(Input.GetKeyDown(KeyCode.Space)) {
+        if(Input.GetKeyDown(KeyCode.U)) {
             // If more time has passed than the cooldown, the player can swing
             if (Time.time - lastSwing > cooldown) {
                 // Reset lastSwing as current time

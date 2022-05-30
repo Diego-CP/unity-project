@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 9007950662211806809}
   - component: {fileID: 9007950662211806808}
   - component: {fileID: 9007950662211806810}
+  - component: {fileID: -99930749754415951}
   m_Layer: 8
   m_Name: DoubleCrate
   m_TagString: Fighter
@@ -160,6 +161,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1620753, y: 0.16933668}
   m_EdgeRadius: 0
+--- !u!114 &-99930749754415951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9007950662211806822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c74d2e70401e24b93f533abc61c737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 5
 --- !u!1 &9007950663195953361
 GameObject:
   m_ObjectHideFlags: 0
