@@ -21,17 +21,7 @@ public class Level_Manager : MonoBehaviour
 
 
 
-    public void FindSaveAssets()
-    {
-       
-        
-    }
 
-    public void SaveToFile()
-    {
-        string filePath = "/itemData.txt";
-
-    }
     private void Awake()
     {
         
@@ -86,14 +76,7 @@ public class Level_Manager : MonoBehaviour
         LevelData levelData = new LevelData();
 
 
-        if (assetsToSave != null)
-        {
-            for (int i = 0; i < assetsToSave.Length; i++)
-            {
-                Destroy(assetsToSave[i]);
-            }
-
-        }
+        
         GameObject[] assets1 = GameObject.FindGameObjectsWithTag(saveAssetTag1); 
         GameObject[] assets2 = GameObject.FindGameObjectsWithTag(saveAssetTag2);
         GameObject[] assets3 = GameObject.FindGameObjectsWithTag("MainCamera");
@@ -187,14 +170,7 @@ public class Level_Manager : MonoBehaviour
             }
         }
 
-        foreach(GameObject saveAble in GameObject.FindGameObjectsWithTag(saveAssetTag1))
-        {
-            Destroy(saveAble);
-        }
-        foreach(GameObject saveAble in GameObject.FindGameObjectsWithTag(saveAssetTag2))
-        {
-            Destroy(saveAble);
-        }
+        
 
         CreateAsset(levelData);
 
