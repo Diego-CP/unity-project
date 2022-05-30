@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using System.Linq;
 
@@ -9,6 +10,8 @@ public class LevelEditor : MonoBehaviour
 
     [SerializeField] Tilemap defaultTilemap;
     public terrainToggle terrain;
+    [SerializeField] public Image image;
+    [SerializeField] public Sprite[] images;
     Tilemap currentTilemap
     {
         //get current tile layer else return default
@@ -16,15 +19,17 @@ public class LevelEditor : MonoBehaviour
         {
             if(Level_Manager.instance.layers.TryGetValue((int)Level_Manager.instance.tiles[selectedTileIndex].tilemap, out Tilemap tilemap))
             {
+               
                 return tilemap;
                 
             }
             else
             {
+                ;
                 return defaultTilemap;
                 
             }
-            Debug.Log(tilemap);
+            
         }
     }
     //get current tile
@@ -42,8 +47,7 @@ public class LevelEditor : MonoBehaviour
 
     int selectedTileIndex;
 
-
-    
+ 
 
     //tile placement based on mouse clicks
     private void Update() {
@@ -62,13 +66,15 @@ public class LevelEditor : MonoBehaviour
                 DeleteTile(pos);
             }
 
-            //select tiles with keyboard numpad
+
+            //select tiles with keyboard
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
 
                 selectedTileIndex++;
                 if (selectedTileIndex >= Level_Manager.instance.tiles.Count)
                     selectedTileIndex = 0;
+                image.sprite = images[selectedTileIndex];
                 Debug.Log(Level_Manager.instance.tiles[selectedTileIndex].name);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -76,7 +82,8 @@ public class LevelEditor : MonoBehaviour
                 selectedTileIndex--;
                 if (selectedTileIndex < 0)
                     selectedTileIndex = Level_Manager.instance.tiles.Count - 1;
-                Debug.Log(Level_Manager.instance.tiles[selectedTileIndex].name);
+                image.sprite = images[selectedTileIndex];
+                //Debug.Log(Level_Manager.instance.tiles[selectedTileIndex].name);
             }
         }
 
