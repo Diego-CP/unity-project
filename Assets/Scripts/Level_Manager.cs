@@ -79,8 +79,8 @@ public class Level_Manager : MonoBehaviour
         
         GameObject[] assets1 = GameObject.FindGameObjectsWithTag(saveAssetTag1); 
         GameObject[] assets2 = GameObject.FindGameObjectsWithTag(saveAssetTag2);
-        GameObject[] assets3 = GameObject.FindGameObjectsWithTag("MainCamera");
-        assetsToSave = assets1.Concat(assets2).ToArray().Concat(assets3).ToArray();
+        //GameObject[] assets3 = GameObject.FindGameObjectsWithTag("MainCamera");
+        assetsToSave = assets1.Concat(assets2).ToArray();//.Concat(assets3).ToArray();
         
 
         foreach (var item in assetsToSave)
@@ -138,16 +138,7 @@ public class Level_Manager : MonoBehaviour
 
     void CreateAsset(LevelData level)
     {
-        foreach(var item in level.items)
-        {
-            for(int i = 0; i < possibleObjects.Length; i++)
-            {
-               if(possibleObjects[i].name == item.assetName)
-                {
-                    Instantiate(possibleObjects[i], item.assetPosition, Quaternion.identity);
-                }
-            }
-        }
+
     }
 
     void LoadLevel()
@@ -170,9 +161,18 @@ public class Level_Manager : MonoBehaviour
             }
         }
 
-        
 
-        CreateAsset(levelData);
+        foreach (var item in levelData.items)
+        {
+            Debug.Log(item.assetName);
+            for (int i = 0; i < possibleObjects.Length; i++)
+            {
+                if (item.assetName.Contains(possibleObjects[i].name))
+                {
+                    Instantiate(possibleObjects[i], item.assetPosition, Quaternion.identity);
+                }
+            }
+        }
 
         Debug.Log("Level was loaded");
     }

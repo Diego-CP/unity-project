@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6601191132831097645}
   - component: {fileID: 6601191132831097642}
   - component: {fileID: 6601191132831097647}
+  - component: {fileID: 6893053161336204010}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Game
@@ -140,3 +141,16 @@ MonoBehaviour:
     maxNormalAngle: 0
   emptyChest: {fileID: -733733409, guid: 04fa6358b91187b44a3fa42fef1568bb, type: 3}
   goldAmount: 10
+--- !u!114 &6893053161336204010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601191132831097640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c74d2e70401e24b93f533abc61c737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 7

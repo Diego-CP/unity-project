@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6719546155771815450}
   - component: {fileID: 6719546155771815429}
   - component: {fileID: 6719546155771815428}
+  - component: {fileID: -6062170689601225736}
   m_Layer: 8
   m_Name: SingleCrate
   m_TagString: Fighter
@@ -76,6 +77,19 @@ MonoBehaviour:
   hitpoint: 1
   maxHitpoint: 1
   pushRecoverySpeed: 0.2
+--- !u!114 &-6062170689601225736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719546155771815431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c74d2e70401e24b93f533abc61c737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 4
 --- !u!1 &6719546155976658702
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class Player : Mover {
     float horizontalInput = Input.GetAxis("Horizontal");
     anim.SetBool("Run", horizontalInput != 0);
 
-    if(Input.GetKeyDown(KeyCode.Space)){
+    if(Input.GetKeyDown(KeyCode.U)){
             Attack();
         }
     }
