@@ -11,6 +11,7 @@ public class Level_Manager : MonoBehaviour
     public ItemController[] itemButtons;
     public GameObject[] itemPrefabs;
     public int currentButton;
+
     public string saveAssetTag1 = "Game";
     public string saveAssetTag2 = "Fighter";
     private GameObject[] assetsToSave;
@@ -18,6 +19,7 @@ public class Level_Manager : MonoBehaviour
     [SerializeField] private Vector3[] assetPositions;
     public GameObject[] possibleObjects;
  
+
 
 
 

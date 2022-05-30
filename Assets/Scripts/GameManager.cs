@@ -29,6 +29,15 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadState;
     }
 
+    private void Start()
+    {
+        spawnPoint = GameObject.Find("SpawnPoint");
+        player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
+        ui = GameObject.Find("UI");
+        hitpointBar = ui.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        faithBar = ui.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+    }
+
     // Game resources
     public List<Sprite> playerSprites;
     public List<Sprite> weaponSprites;
@@ -36,6 +45,7 @@ public class GameManager : MonoBehaviour
     //public List<int> xpTable;
 
     // References
+    public GameObject spawnPoint;
     public Player player;
     public FloatingTextManager floatingTextManager;
     public RectTransform hitpointBar;
@@ -108,10 +118,12 @@ public class GameManager : MonoBehaviour
         // Change the weapon level
         
         // If the scene is not a menu scene, load the player at the spawn point
+
         if(s.name != "Death" && s.name != "Win" && s.name != "Menu" && s.name != "Editor")
+        {
             // Every time a scene is loaded, teleport the player to Spawnpoint
             player.transform.position = GameObject.Find("SpawnPoint").transform.position;
-        
+        }        
 
         Debug.Log("Loaded");
     }

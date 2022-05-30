@@ -47,8 +47,8 @@ public class Weapon : Collidable
     }
 
     protected override void OnCollide(Collider2D coll) {
-        // Check if what is being collided with is a Fighter and is not the player
-        if (coll.tag == "Fighter") {
+        // Check if what is being collided with is a Fighter or Boss and is not the player
+        if (coll.tag == "Fighter" || coll.tag == "Boss") {
             if (coll.name != "Player") {
                 // Create a Damage object
                 Damage dmg = new Damage{

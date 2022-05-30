@@ -17,6 +17,7 @@ public class Enemy : Mover {
 
     // Is it colliding with the player?
     private bool collidingWithPlayer;
+    private GameObject spawn;
     private Transform playerTransform;
     private Vector3 startingPosition;
 
@@ -30,11 +31,19 @@ public class Enemy : Mover {
     protected override void Start() {
         base.Start();
         // Assign values to each variable
-        // Assign the position of the player thrrough GameManager
-        playerTransform = GameManager.instance.player.transform;
         startingPosition = transform.position;
+
         // Get the box collider from the first child of the enemy (always Hitbox)
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
+
+        Invoke("getPlayer", 0);
+    }
+
+    private void getPlayer()
+    {
+        // Assign the position of the player through GameManager
+        spawn = GameManager.instance.spawnPoint;
+        playerTransform = spawn.transform.GetChild(0).gameObject.transform;
     }
 
     private void FixedUpdate() {

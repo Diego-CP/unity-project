@@ -25,7 +25,9 @@ public class ItemController : MonoBehaviour
 
     public void ButtonClicked()
     {
+
         if(quantity > 0 && limited)
+
         {
             Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
@@ -34,10 +36,12 @@ public class ItemController : MonoBehaviour
 
 
             Debug.Log("limited");
+
             quantity--;
             quantityText.text = quantity.ToString();
             editor.currentButton = ID;
         }
+
         else if(!limited)
         {
             Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -47,6 +51,7 @@ public class ItemController : MonoBehaviour
             editor.currentButton = ID;
 
         }
+
        
     }
 
