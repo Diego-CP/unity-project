@@ -87,7 +87,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  damagePoint: 1
+  damagePoint: 10
   pushForce: 5
   weaponLevel: 0
 --- !u!95 &3121644667846735290

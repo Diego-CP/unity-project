@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class VictoryCheck : MonoBehaviour
 {
 
     List<GameObject> Bosses = new List<GameObject>();
-    // Start is called before the first frame update
-    void Start()
+
+    public void Update()
     {
-        Bosses.AddRange(GameObject.FindGameObjectsWithTag("Boss"));
+        Bosses = GameObject.FindGameObjectsWithTag("Boss").ToList();
     }
 
     public void DeadBoss(GameObject boss)

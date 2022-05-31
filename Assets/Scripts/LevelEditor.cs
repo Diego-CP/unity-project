@@ -10,10 +10,8 @@ public class LevelEditor : MonoBehaviour
 
     [SerializeField] Tilemap defaultTilemap;
     public terrainToggle terrain;
-
     [SerializeField] public Image image;
     [SerializeField] public Sprite[] images;
-
     Tilemap currentTilemap
     {
         //get current tile layer else return default
@@ -49,6 +47,7 @@ public class LevelEditor : MonoBehaviour
 
     int selectedTileIndex;
 
+ 
 
     //tile placement based on mouse clicks
     private void Update() {
@@ -62,13 +61,6 @@ public class LevelEditor : MonoBehaviour
                 PlaceTile(pos);
             }
 
-
-            if (Input.GetMouseButton(1))
-            {
-                DeleteTile(pos);
-            }
-
-
             if (Input.GetMouseButton(1))
             {
                 DeleteTile(pos);
@@ -76,16 +68,13 @@ public class LevelEditor : MonoBehaviour
 
 
             //select tiles with keyboard
-
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
 
                 selectedTileIndex++;
                 if (selectedTileIndex >= Level_Manager.instance.tiles.Count)
                     selectedTileIndex = 0;
-
                 image.sprite = images[selectedTileIndex];
-
                 Debug.Log(Level_Manager.instance.tiles[selectedTileIndex].name);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -93,10 +82,8 @@ public class LevelEditor : MonoBehaviour
                 selectedTileIndex--;
                 if (selectedTileIndex < 0)
                     selectedTileIndex = Level_Manager.instance.tiles.Count - 1;
-
                 image.sprite = images[selectedTileIndex];
                 //Debug.Log(Level_Manager.instance.tiles[selectedTileIndex].name);
-
             }
         }
 

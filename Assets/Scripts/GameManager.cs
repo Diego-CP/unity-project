@@ -31,11 +31,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Invoke("getValues",0);
+    }
+
+    private void getValues()
+    {
         spawnPoint = GameObject.Find("SpawnPoint");
         player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
         ui = GameObject.Find("UI");
         hitpointBar = ui.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<RectTransform>();
         faithBar = ui.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        floatingTextManager = GameObject.Find("FloatingTextManager").gameObject.GetComponent<FloatingTextManager>();
     }
 
     // Game resources

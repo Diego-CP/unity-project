@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Fighter
   - Manager
-  - Boss
   - Game
+  - Boss
   layers:
   - Default
   - TransparentFX

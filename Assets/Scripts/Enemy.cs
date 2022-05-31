@@ -36,7 +36,7 @@ public class Enemy : Mover {
         // Get the box collider from the first child of the enemy (always Hitbox)
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
 
-        Invoke("getPlayer", 0);
+        Invoke("getPlayer", 0.000000001f);
     }
 
     private void getPlayer()

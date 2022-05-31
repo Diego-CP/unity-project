@@ -21,6 +21,11 @@ public class FloatingTextManager : MonoBehaviour
             txt.UpdateFloatingText();
     }
 
+    private void Start()
+    {
+        textContainer = this.gameObject;
+    }
+
     // Function to show the text with th given parameters
     public void Show(string message, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) {
         // Get a FloatingText object
