@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b1eeca9a00fa34b8ed2001845f7431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lvlManager: {fileID: 1111151697902665533, guid: 51a1e8c2b776c9b409c03560c0d4e22b, type: 3}
   playerSprites: []
   weaponSprites: []
   spawnPoint: {fileID: 0}

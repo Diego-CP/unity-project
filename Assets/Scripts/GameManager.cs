@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     // Allow an instance of GameManager to be accesible from anywhere
     public static GameManager instance;
+    public Level_Manager lvlManager;
 
     // Once the game starts up, define the instance of GameManager as this
     private void Awake() {
@@ -23,10 +24,18 @@ public class GameManager : MonoBehaviour
         //  when starting again
         PlayerPrefs.DeleteAll();
 
+        if (SceneManager.GetActiveScene().name == "LevelLoad")
+        {
+            lvlManager.LoadLevel();
+        }
+
         instance = this;
         // Once the scene is loaded, SceneManager will go through all functions and execute them,
         //  so we add the LoadState function at the end
         SceneManager.sceneLoaded += LoadState;
+
+
+        
     }
 
     private void Start()
@@ -113,15 +122,12 @@ public class GameManager : MonoBehaviour
         // Get the player preferences from the id "SaveState"
         string[] data = PlayerPrefs.GetString("SaveState").Split('|');   
 
-        // Change player skin
-
         // Change amount of gold
         gold = int.Parse(data[1]);
 
         // Change amount of experience
         experience = int.Parse(data[2]);
 
-        // Change the weapon level
         
         // If the scene is not a menu scene, load the player at the spawn point
 

@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2275607189486182321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7707744821453606257}
+  - component: {fileID: 1111151697902665533}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7707744821453606257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275607189486182321}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -719.0596, y: -333.9515, z: -63.60629}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1111151697902665533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275607189486182321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643fb86b241a0bf468f7c87ad40d44c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  itemPrefabs:
+  - {fileID: 6659625459824163237, guid: 7be8d95dca2d0914da8a0366734edc3a, type: 3}
+  - {fileID: 1543901239537790201, guid: 7a10f2b011ed31f44a0fe527b9dc2a1c, type: 3}
+  - {fileID: 349979227687404477, guid: 5cd96f098b159164994c3d34c3e622fd, type: 3}
+  - {fileID: 8606796305663108713, guid: f78b518da00f01341b2f00994dd3e51a, type: 3}
+  - {fileID: 6719546155771815431, guid: c0d64513e11731847a228b631ec63bae, type: 3}
+  - {fileID: 9007950662211806822, guid: 222035ffb2191704b8726a1d6c0429de, type: 3}
+  - {fileID: 2980198129176754065, guid: d413dbf2506e89e41b06f79fc093a313, type: 3}
+  - {fileID: 6601191132831097640, guid: c070e8dadad4a2d4cbcd876e1ebefee3, type: 3}
+  - {fileID: 4374674398035968295, guid: d08a2376d0238614fa72d0a42d727924, type: 3}
+  currentButton: 0
+  saveAssetTag1: Boss
+  saveAssetTag2: Fighter
+  saveAssetTag3: Spawn
+  saveAssetTag4: Game
+  assetNames: []
+  assetPositions: []
+  possibleObjects:
+  - {fileID: 1543901239537790201, guid: 7a10f2b011ed31f44a0fe527b9dc2a1c, type: 3}
+  - {fileID: 6719546155771815431, guid: c0d64513e11731847a228b631ec63bae, type: 3}
+  - {fileID: 349979227687404477, guid: 5cd96f098b159164994c3d34c3e622fd, type: 3}
+  - {fileID: 8606796305663108713, guid: f78b518da00f01341b2f00994dd3e51a, type: 3}
+  - {fileID: 9007950662211806822, guid: 222035ffb2191704b8726a1d6c0429de, type: 3}
+  - {fileID: 2980198129176754065, guid: d413dbf2506e89e41b06f79fc093a313, type: 3}
+  - {fileID: 6601191132831097640, guid: c070e8dadad4a2d4cbcd876e1ebefee3, type: 3}
+  - {fileID: 4374674398035968295, guid: d08a2376d0238614fa72d0a42d727924, type: 3}
+  SpawnPoint: {fileID: 6659625459824163237, guid: 7be8d95dca2d0914da8a0366734edc3a, type: 3}
+  tiles:
+  - {fileID: 11400000, guid: 99f40d3c5ce62074a92195166b61b8ee, type: 2}
+  - {fileID: 11400000, guid: 7851f85b99a05784da7d3c9307a10b8e, type: 2}
+  tilemaps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

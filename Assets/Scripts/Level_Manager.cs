@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class Level_Manager : MonoBehaviour
 {
@@ -11,20 +12,28 @@ public class Level_Manager : MonoBehaviour
     public ItemController[] itemButtons;
     public GameObject[] itemPrefabs;
     public int currentButton;
-    public string saveAssetTag1 = "Game";
+    public string saveAssetTag1 = "Boss";
     public string saveAssetTag2 = "Fighter";
+    public string saveAssetTag3 = "Spawn";
+    public string saveAssetTag4 = "Game";
     private GameObject[] assetsToSave;
     [SerializeField] private string[] assetNames;
     [SerializeField] private Vector3[] assetPositions;
     public GameObject[] possibleObjects;
- 
+    public GameObject SpawnPoint;
+    private bool flag = false;
+
+
+    // Retrieve the name of this scene.
+    string sceneName;
+
 
 
 
 
     private void Awake()
     {
-        
+        sceneName = SceneManager.GetActiveScene().name;
         if (instance == null) instance = this;
         else Destroy(this);//clear lvl on start
 
@@ -56,21 +65,27 @@ public class Level_Manager : MonoBehaviour
 
     private void Update()
     {
-        Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-
-        if(Input.GetMouseButtonDown(0) && itemButtons[currentButton].clicked)
+        
+        if(sceneName == "Editor")
         {
-            itemButtons[currentButton].clicked = false;
-            Instantiate(itemPrefabs[currentButton], new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
+            
+            Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
+            if (Input.GetMouseButtonDown(0) && itemButtons[currentButton].clicked)
+            {
+                itemButtons[currentButton].clicked = false;
+                Instantiate(itemPrefabs[currentButton], new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
+
+            }
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.A)) Savelevel();
+
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.M)) LoadLevel();
         }
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.A)) Savelevel();
-    
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.M)) LoadLevel();
+
     }
 
-    void Savelevel()
+    public void Savelevel()
     {
     
         LevelData levelData = new LevelData();
@@ -79,8 +94,9 @@ public class Level_Manager : MonoBehaviour
         
         GameObject[] assets1 = GameObject.FindGameObjectsWithTag(saveAssetTag1); 
         GameObject[] assets2 = GameObject.FindGameObjectsWithTag(saveAssetTag2);
+        GameObject[] assets3 = GameObject.FindGameObjectsWithTag(saveAssetTag3);
         //GameObject[] assets3 = GameObject.FindGameObjectsWithTag("MainCamera");
-        assetsToSave = assets1.Concat(assets2).ToArray();//.Concat(assets3).ToArray();
+        assetsToSave = assets1.Concat(assets2).ToArray().Concat(assets3).ToArray();
         
 
         foreach (var item in assetsToSave)
@@ -136,12 +152,9 @@ public class Level_Manager : MonoBehaviour
         
     }
 
-    void CreateAsset(LevelData level)
-    {
 
-    }
 
-    void LoadLevel()
+    public void LoadLevel()
     {
 
         string json = File.ReadAllText(Application.dataPath + "/testLevel.json");
@@ -161,7 +174,28 @@ public class Level_Manager : MonoBehaviour
             }
         }
 
+        foreach(var item in levelData.items)
+        {
+            if (item.assetName.Contains("SpawnPoint"))
+            {
+                flag = true;
+                Instantiate(SpawnPoint, item.assetPosition, Quaternion.identity);
+            }
+        }
+        if (!flag)
+        {
+            Instantiate(SpawnPoint, new Vector3Int(0, 0, 0), Quaternion.identity);
+        }
 
+
+        item_creation(levelData);
+
+        Debug.Log("Level was loaded");
+    }
+
+    void item_creation(LevelData levelData)
+    {
+        
         foreach (var item in levelData.items)
         {
             Debug.Log(item.assetName);
@@ -171,10 +205,10 @@ public class Level_Manager : MonoBehaviour
                 {
                     Instantiate(possibleObjects[i], item.assetPosition, Quaternion.identity);
                 }
+
+
             }
         }
-
-        Debug.Log("Level was loaded");
     }
     
 }
