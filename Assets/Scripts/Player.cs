@@ -7,19 +7,16 @@ public class Player : Mover {
     public int faith;
     public int maxFaith;
     private Animator anim;
-    public GameObject projectile;
-    protected Quaternion direction;
-    public float cooldown = 0.5f;
-    private float lastUse;
-    private float angle;
-    private float currentX;
-    private float currentY;
-    protected float spellRange = 0.5f;
-    public int secondSpellDamage = 1;
-    public float secondSpellPushForce = 5.0f;
+    public float currentX;
+    public float currentY;
+    private SpellInventory spellInv;
+
+    // Dictionary that contains a spell game object with its corresponding image
+    //public Dictionary<GameObject, GameObject> objectImages = new Dictionary<GameObject, GameObject>();
 
     private void Awake(){
         anim = GetComponent<Animator>();
+        spellInv = GetComponent<SpellInventory>();
     }
 
     virtual public void Update(){
@@ -30,66 +27,35 @@ public class Player : Mover {
             Attack();
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha8)){
-            UseFirstSpell();
+        if(Input.GetKeyDown(KeyCode.Alpha8)) {
+            if(spellInv.isFull[0]) {
+                Collectable spell = spellInv.slots[0].GetComponent<Collectable>();
+                spell.Activate();
+            } else {
+                Debug.Log("No Spell in that slot");
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha9)) {
-            UseSecondSpell();
+            if(spellInv.isFull[1]) {
+                Collectable spell = spellInv.slots[1].GetComponent<Collectable>();
+                spell.Activate();
+            } else {
+                Debug.Log("No Spell in that slot");
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha4)) {
+            spellInv.RemoveSpell(0);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha5)) {
+            spellInv.RemoveSpell(1);
         }
     }
 
     void Attack() {
         anim.SetTrigger("Swing");
-    }
-
-    void UseFirstSpell() {
-        // If more time has passed than the cooldown, the player can use the spell
-        if (Time.time - lastUse > cooldown) {
-            // Reset lastUse as current time
-            lastUse = Time.time;
-
-            // Instantiate a projectile accordingly to what direction the player is moving
-            float angle = Mathf.Atan2(currentY, currentX) * Mathf.Rad2Deg - 90;
-            Instantiate(projectile, transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
-        }
-    }
-
-    void UseSecondSpell() {
-        // If more time has passed than the cooldown, the player can use the spell
-        if (Time.time - lastUse > cooldown) {
-            // Reset lastUse as current time
-            lastUse = Time.time;
-
-            // List of colliders that oerlap with the spell's circular hitbox
-            Collider2D[] collidedBoxes = Physics2D.OverlapCircleAll(transform.position, spellRange);
-            // When nothing is hit, continue to the next frame
-            for(int i = 0; i < collidedBoxes.Length; i++) {
-                // When nothing is hit, continue
-                if (collidedBoxes[i] == null) 
-                    continue;
-                
-                // Check if what is being collided with is a Fighter and is not the player
-                if (collidedBoxes[i].tag == "Fighter") {
-                    if (collidedBoxes[i].name != "Player") {
-                        // Create a Damage object
-                        Damage dmg = new Damage{
-                            damageAmount = secondSpellDamage,
-                            origin = transform.position,
-                            pushForce = secondSpellPushForce
-                        };
-
-                        collidedBoxes[i].SendMessage("RecieveDamage", dmg);
-                    }
-                }
-            }
-        }
-    }
-
-    // Function to draw the AOE of the second spell
-    void OnDrawGizmosSelected() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, spellRange);
     }
 
     // Override the function to recieve damage from Fighter to include OnHitpointChange
@@ -119,6 +85,7 @@ public class Player : Mover {
         GameManager.instance.OnFaithChange();
     }
 
+    // Function to increase health by a given amount
     public void GainFaith(int faithAmount) {
         // If faith is at max, dont do anything
         if(faith == maxFaith) {

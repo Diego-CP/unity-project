@@ -29,26 +29,24 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadState;
     }
 
-    // Game resources
-    public List<Sprite> playerSprites;
-    public List<Sprite> weaponSprites;
-    //public List<int> weaponPrices;
-    //public List<int> xpTable;
-
     // References
     public Player player;
     public FloatingTextManager floatingTextManager;
     public RectTransform hitpointBar;
-    public GameObject ui;
-
     public RectTransform faithBar;
-
+    public GoldText goldText;
+    public LevelText levelText;
+    public GameObject ui;
+    public Weapon weapon;
 
     // Inventory
     public int gold;
     public int experience;
-
     public int faith;
+    public int level;
+
+    // Dictionary of spell GameObjects with their corresponding images
+    public Dictionary<GameObject, GameObject> objectImages = new Dictionary<GameObject, GameObject>();
 
     // A function to change the HP bar once HP changes
     public void OnHitpointChange() {
@@ -62,7 +60,21 @@ public class GameManager : MonoBehaviour
         faithBar.localScale = new Vector3(1, ratio, 1);
     }
 
-    // Function to call the Show form FloatinftextManager
+    public void OnGoldChange() {
+        goldText.AddGold();
+    }
+
+    public void OnExperienceChange() {
+        // Increase level if the player gains more than 20 xp
+        if(experience >= 20) {
+            level ++;
+            experience -= 20;
+            weapon.UpgradeWeapon();
+        }
+        levelText.AddExperience();
+    }
+
+    // Function to call the Show form FloatingTextManager
     //  This is included in Game Manager so it can be called from anywhere
     public void ShowText(string message, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) {
         floatingTextManager.Show(message, fontSize, color, position, motion, duration);
@@ -80,7 +92,9 @@ public class GameManager : MonoBehaviour
         // Save the amount of experience
         s += experience.ToString() + "|";
 
-        // Save the weapon level
+        // Save the level
+        s += level.ToString() + "|";
+
         s += "0";
 
         // Save the preferences under the id "SaveState"
@@ -95,9 +109,7 @@ public class GameManager : MonoBehaviour
             return;
 
         // Get the player preferences from the id "SaveState"
-        string[] data = PlayerPrefs.GetString("SaveState").Split('|');   
-
-        // Change player skin
+        string[] data = PlayerPrefs.GetString("SaveState").Split('|');
 
         // Change amount of gold
         gold = int.Parse(data[1]);
@@ -105,7 +117,8 @@ public class GameManager : MonoBehaviour
         // Change amount of experience
         experience = int.Parse(data[2]);
 
-        // Change the weapon level
+        // Change level
+        level = int.Parse(data[3]);
         
         // If the scene is not a menu scene, load the player at the spawn point
         if(s.name != "Death" && s.name != "Win" && s.name != "Menu")

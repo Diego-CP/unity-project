@@ -8,9 +8,6 @@ public class Weapon : Collidable {
 
     // Amount of knockback force
     public float pushForce = 2.0f;
-
-    // Level of the weapon
-    public int weaponLevel = 0;
     
     // Have a sprite renderer to change the sprite of the weapon with level
     private SpriteRenderer spriteRenderer;
@@ -59,5 +56,10 @@ public class Weapon : Collidable {
                 coll.SendMessage("RecieveDamage", dmg);
             }
         }
+    }
+
+    // method to increase the damage of the weapon by one 
+    public void UpgradeWeapon() {
+        this.damagePoint += 1;
     }
 }

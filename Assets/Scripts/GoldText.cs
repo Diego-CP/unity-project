@@ -4,14 +4,13 @@ using UnityEngine;
 using TMPro;
 
 public class GoldText : GameManager {
-    
     private TextMeshProUGUI textMesh;
 
     void Awake() {
         textMesh = GetComponent<TextMeshProUGUI>();
     }
 
-    void Update() {
+    public void AddGold() {
         textMesh.text = "" + GameManager.instance.gold;
     }
 }

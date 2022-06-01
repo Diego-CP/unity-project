@@ -17,6 +17,7 @@ public class Chest : Collectable {
             GetComponent<SpriteRenderer>().sprite = emptyChest;
             // Increase the amount of gold the Player has
             GameManager.instance.gold += goldAmount;
+            GameManager.instance.OnGoldChange();
             // Display the amount of gold gained on-screen
             GameManager.instance.ShowText("+ " + goldAmount + " Gold!", 25, Color.yellow, transform.position, Vector3.up * 20, 1.5f);
         }

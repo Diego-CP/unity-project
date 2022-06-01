@@ -1723,7 +1723,7 @@ TextureImporter:
         width: 3
         height: 3
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1731,6 +1731,48 @@ TextureImporter:
       bones: []
       spriteID: 5846568524b0af44e804514a5be23af9
       internalID: -1769854432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: potion_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7207b84832264248b146c3e9ab6d1cb
+      internalID: -2001618910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: potion_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549a2426da9c7ec4880e73ca6b11f41f
+      internalID: -1304219118
       vertices: []
       indices: 
       edges: []
@@ -1763,6 +1805,7 @@ TextureImporter:
       floor_14: 742519151
       wall_3: 1612847154
       wall_5: -471561068
+      potion_3: -2001618910
       potion_0: -1680524751
       torch_6: -139762451
       crate_2: -881057685
@@ -1814,6 +1857,7 @@ TextureImporter:
       column_2: -853665970
       column_5: 1336653483
       wall_4: -1619280126
+      potion_2: -1304219118
       floor_12: -206831588
       stairs_2: -1420091400
       floor_3: -1197060059
