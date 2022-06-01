@@ -17,8 +17,8 @@ public class Enemy : Mover {
 
     // Is it colliding with the player?
     private bool collidingWithPlayer;
-    private GameObject spawn;
-    private Transform playerTransform;
+    public GameObject spawn;
+    public Transform playerTransform;
     private Vector3 startingPosition;
 
     public ContactFilter2D filter;

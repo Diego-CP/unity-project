@@ -9,6 +9,11 @@ public class PlayerSpawnPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(GameObject.Find("SpawnPoint") == null)
+        {
+            gameObject.name = "SpawnPoint";
+        }
+
         if(GameObject.Find("Player") == null)
         {
             GameObject pl = GameObject.Instantiate(Player, transform.position, Quaternion.identity) as GameObject;
@@ -17,7 +22,14 @@ public class PlayerSpawnPoint : MonoBehaviour
         }
         else
         {
-            GameObject.Find("Player").transform.parent = gameObject.transform;
+            if(gameObject.name == "SpawnPoint")
+            {
+                GameObject.Find("Player").transform.parent = gameObject.transform;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

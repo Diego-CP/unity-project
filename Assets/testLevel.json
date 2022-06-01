@@ -182,32 +182,32 @@
         {
             "assetName": "Boss(Clone)",
             "assetPosition": {
-                "x": 0.13492055237293244,
-                "y": -0.2222222089767456,
+                "x": 0.1986132264137268,
+                "y": -0.31482940912246706,
+                "z": 0.0
+            }
+        },
+        {
+            "assetName": "SmallEnemy(Clone)",
+            "assetPosition": {
+                "x": -0.6249628067016602,
+                "y": -0.6118220686912537,
+                "z": 0.0
+            }
+        },
+        {
+            "assetName": "SmallEnemy(Clone)",
+            "assetPosition": {
+                "x": -0.37873145937919619,
+                "y": 0.35452669858932497,
                 "z": 0.0
             }
         },
         {
             "assetName": "Player",
             "assetPosition": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "assetName": "SmallEnemy(Clone)",
-            "assetPosition": {
-                "x": -0.28306877613067629,
-                "y": -0.39417988061904909,
-                "z": 0.0
-            }
-        },
-        {
-            "assetName": "SmallEnemy(Clone)",
-            "assetPosition": {
-                "x": -0.4603175222873688,
-                "y": 0.365079402923584,
+                "x": -0.440000057220459,
+                "y": 0.04499998688697815,
                 "z": 0.0
             }
         },
