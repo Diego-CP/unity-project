@@ -9,7 +9,10 @@ public class PlayTest : MonoBehaviour
     public static bool pressPlay = false;
     public GameObject EditorUI;
     public GameObject PlayUI;
+   
     // Update is called once per frame
+
+   
     void Update()
     {
         if (pressEdit)

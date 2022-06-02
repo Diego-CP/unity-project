@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
     // Allow an instance of GameManager to be accesible from anywhere
     public static GameManager instance;
     public Level_Manager lvlManager;
+    CameraMotor camMotor;
 
     // Once the game starts up, define the instance of GameManager as this
     private void Awake() {
         // If there is already a GameManager in the loaded scene, destroy the new one and keep the old one
+        camMotor = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMotor>();
         if (GameManager.instance != null) {
             Destroy(gameObject);
             Destroy(player.gameObject);
@@ -38,19 +40,33 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void Start()
+    private void Update()
+    {
+        getValues();
+    }
+    private void Start()    
     {
         Invoke("getValues",0);
     }
 
-    private void getValues()
+    public void getValues()
     {
-        spawnPoint = GameObject.Find("SpawnPoint");
-        player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
-        ui = GameObject.Find("UI");
-        hitpointBar = ui.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        faithBar = ui.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        floatingTextManager = GameObject.Find("FloatingTextManager").gameObject.GetComponent<FloatingTextManager>();
+        
+        if (spawnPoint == null)
+            spawnPoint = GameObject.Find("SpawnPoint");
+        if (player == null)
+            player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
+        if(camMotor.lookAt == null)
+            camMotor.lookAt = GameObject.Find("Player").transform;
+        if (ui == null)
+            ui = GameObject.Find("UI");
+        if (hitpointBar == null)
+            hitpointBar = ui.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        if (faithBar == null)
+            faithBar = ui.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        if (floatingTextManager == null)
+            floatingTextManager = GameObject.Find("FloatingTextManager").gameObject.GetComponent<FloatingTextManager>();
+        
     }
 
     // Game resources
