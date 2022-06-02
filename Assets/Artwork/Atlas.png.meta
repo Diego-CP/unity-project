@@ -1681,7 +1681,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1702,7 +1702,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1710,6 +1710,69 @@ TextureImporter:
       bones: []
       spriteID: ce0a3afc757dc6d41a0598418378cd3d
       internalID: -548131826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: potion_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a44c1c34606b62c48b9595bc217fda9f
+      internalID: -2025204530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: potion_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e31629a9253b0d34599ae3d946d46624
+      internalID: 320197209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_0
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 119
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5b212e6a9fccee4e90e74aaf69a0aa1
+      internalID: -896905366
       vertices: []
       indices: 
       edges: []
@@ -1732,6 +1795,7 @@ TextureImporter:
       torch_0: 1755856615
       stairs_1: 145657251
       weapon_2: -592268461
+      projectile_0: -896905366
       floor_7: 677024868
       wall_1: -1962876383
       floor_5: 789142048
@@ -1741,6 +1805,7 @@ TextureImporter:
       floor_14: 742519151
       wall_3: 1612847154
       wall_5: -471561068
+      potion_3: 320197209
       potion_0: -1680524751
       torch_6: -139762451
       crate_2: -881057685
@@ -1792,6 +1857,7 @@ TextureImporter:
       column_2: -853665970
       column_5: 1336653483
       wall_4: -1619280126
+      potion_2: -2025204530
       floor_12: -206831588
       stairs_2: -1420091400
       floor_3: -1197060059

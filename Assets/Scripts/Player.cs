@@ -9,11 +9,15 @@ public class Player : Mover
     public int maxFaith;
     private Animator anim;
     public GameObject Weapon;
+    public float currentX;
+    public float currentY;
+    private SpellInventory spellInv;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         Invoke("getWeapon", 0);
+        spellInv = GetComponent<SpellInventory>();
     }
 
     private void getWeapon() {
@@ -28,9 +32,34 @@ public class Player : Mover
         anim.SetBool("Run", horizontalInput != 0);
 
 
-    if(Input.GetKeyDown(KeyCode.U)){
+        if(Input.GetKeyDown(KeyCode.U)) {
+                Attack();
+        }
 
-            Attack();
+        if(Input.GetKeyDown(KeyCode.Alpha8)) {
+            if(spellInv.isFull[0]) {
+                Collectable spell = spellInv.slots[0].GetComponent<Collectable>();
+                spell.Activate();
+            } else {
+                Debug.Log("No Spell in that slot");
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha9)) {
+            if(spellInv.isFull[1]) {
+                Collectable spell = spellInv.slots[1].GetComponent<Collectable>();
+                spell.Activate();
+            } else {
+                Debug.Log("No Spell in that slot");
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha4)) {
+            spellInv.RemoveSpell(0);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha5)) {
+            spellInv.RemoveSpell(1);
         }
     }
 
@@ -106,6 +135,12 @@ public class Player : Mover
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
+
+        // Guardar los valores de x y y si se mueve el jugador
+        if (x != 0 || y != 0) {
+            currentX = x;
+            currentY = y;
+        }
 
         // If the Player is not alive, they are not able to move
         if (isAlive) 

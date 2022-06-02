@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GoldText : GameManager {
-    
+public class LevelText : GameManager {
     private TextMeshProUGUI textMesh;
 
     void Awake() {
         textMesh = GetComponent<TextMeshProUGUI>();
     }
 
-    public void AddGold() {
-        textMesh.text = "" + GameManager.instance.gold;
+    public void AddExperience() {
+        textMesh.text = "Lv. " + GameManager.instance.level;
     }
 }

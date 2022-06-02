@@ -17,8 +17,8 @@ public class Enemy : Mover {
 
     // Is it colliding with the player?
     private bool collidingWithPlayer;
-    public GameObject spawn;
-    public Transform playerTransform;
+    private GameObject spawn;
+    private Transform playerTransform;
     private Vector3 startingPosition;
 
     public ContactFilter2D filter;
@@ -42,50 +42,69 @@ public class Enemy : Mover {
     private void getPlayer()
     {
         // Assign the position of the player through GameManager
-        spawn = GameManager.instance.spawnPoint;
-        playerTransform = spawn.transform.GetChild(0).gameObject.transform;
+        if(GameObject.Find("SpawnPoint") != null)
+        {
+            spawn = GameManager.instance.spawnPoint;
+            playerTransform = spawn.transform.GetChild(0).gameObject.transform;
+        }
     }
 
-    private void FixedUpdate() {
-        // Determine if the player is in chase length
-        if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLength) {
-            // Set the value of chasing depending on if the player is inside aggro range
-            if(Vector3.Distance(playerTransform.position, startingPosition) < triggerLength) 
-                chasing = true;
-            
-            if (chasing) {
-                // If the enemy is not colliding with the player, move towards him
-                if(!collidingWithPlayer) {
-                    UpdateMotor((playerTransform.position - transform.position).normalized);
+    private void FixedUpdate() 
+    {
+        if(spawn != null && playerTransform != null)
+        {
+            // Determine if the player is in chase length
+            if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLength) 
+            {
+                // Set the value of chasing depending on if the player is inside aggro range
+                if(Vector3.Distance(playerTransform.position, startingPosition) < triggerLength) 
+                    chasing = true;
+                
+                if(chasing) 
+                {
+                    // If the enemy is not colliding with the player, move towards him
+                    if(!collidingWithPlayer) 
+                    {
+                        UpdateMotor((playerTransform.position - transform.position).normalized);
+                    }
+                } 
+                else 
+                {
+                    // If the enemy is not chasing, return to starting position
+                    UpdateMotor(startingPosition - transform.position);
                 }
-            } else {
-                // If the enemy is not chasing, return to starting position
+            // If the player is not in chase length, return to starting position
+            } 
+            else 
+            {
+                // Return to starting position and stop chasing
                 UpdateMotor(startingPosition - transform.position);
+                chasing = false;
             }
-        // If the player is not in chase length, return to starting position
-        } else {
-            // Return to starting position and stop chasing
-            UpdateMotor(startingPosition - transform.position);
-            chasing = false;
+
+            // Check for overlap with Player 
+            collidingWithPlayer = false;
+
+            // Look for other colliders inside of this objetcs' collider and place it in hits array
+            boxCollider.OverlapCollider(filter, hits);
+
+            for(int i = 0; i < hits.Length; i++) 
+            {
+                // When nothing is hit, continue to the next frame
+                if (hits[i] == null) 
+                    continue;
+
+                // If something is hit, 
+                if (hits[i].tag == "Fighter" && hits[i].name == "Player")
+                    collidingWithPlayer = true; 
+
+                // Clear the array
+                hits[i] = null;
+            }
         }
-
-        // Check for overlap with Player 
-        collidingWithPlayer = false;
-        // Look for other colliders inside of this objetcs' collider and place it in hits array
-        boxCollider.OverlapCollider(filter, hits);
-
-        for (int i = 0; i < hits.Length; i++) {
-            // When nothing is hit, continue to the next frame
-            if (hits[i] == null) 
-                continue;
-
-            // If something is hit, 
-            if (hits[i].tag == "Fighter" && hits[i].name == "Player"){
-                collidingWithPlayer = true; 
-            }
-
-            // Clear the array
-            hits[i] = null;
+        else
+        {
+            getPlayer();
         }
     }
 

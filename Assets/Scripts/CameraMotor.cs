@@ -7,16 +7,19 @@ public class CameraMotor : MonoBehaviour {
     public float boundX = 0.05f;
     public float boundY = 0.05f;
 
-    private void Start() {
-
-        lookAt = GameObject.Find("Player").transform;
+    private void Start() 
+    {
+        if(GameObject.Find("Player") != null)
+            lookAt = GameObject.Find("Player").transform;
     }
     
     private void LateUpdate() {
         Vector3 delta = Vector3.zero;
+
         if(lookAt != null)
         {
             float deltaX = lookAt.position.x - transform.position.x;
+
             if (deltaX > boundX || deltaX < -boundX)
             {
                 if (transform.position.x < lookAt.position.x)
@@ -30,6 +33,7 @@ public class CameraMotor : MonoBehaviour {
             }
 
             float deltaY = lookAt.position.y - transform.position.y;
+
             if (deltaY > boundY || deltaY < -boundY)
             {
                 if (transform.position.y < lookAt.position.y)
@@ -44,7 +48,5 @@ public class CameraMotor : MonoBehaviour {
 
             transform.position += new Vector3(delta.x, delta.y, 0);
         }
-        
-            
     }
 }

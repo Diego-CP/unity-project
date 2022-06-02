@@ -17,4 +17,9 @@ public class Collectable : Collidable
     protected virtual void OnCollect() {
         collected = true;
     }
+
+    // Method to activate spells
+    public virtual void Activate() {
+        Debug.Log("Activate not configured.");
+    }
 }

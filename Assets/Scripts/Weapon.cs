@@ -63,4 +63,8 @@ public class Weapon : Collidable
         
     }
 
+    // Method to increase the damage of the weapon by one 
+    public void UpgradeWeapon() {
+        this.damagePoint += 1;
+    }
 }
