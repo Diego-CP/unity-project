@@ -25,6 +25,7 @@ public class Level_Manager : MonoBehaviour
     public List<CustomTile> tiles = new List<CustomTile>();
     [SerializeField] List<Tilemap> tilemaps = new List<Tilemap>();
     public Dictionary<int, Tilemap> layers = new Dictionary<int, Tilemap>();
+    public string level;
 
 
     // Retrieve the name of this scene.
@@ -159,7 +160,9 @@ public class Level_Manager : MonoBehaviour
 
         //save the data as a json
         string json = JsonUtility.ToJson(levelData, true);
-        File.WriteAllText(Application.dataPath + "/testLevel.json", json);
+        level = json;
+        Debug.Log(level);
+        //File.WriteAllText(Application.dataPath + "/testLevel.json", json);
 
         //debug
         Debug.Log("Level was saved");
@@ -167,7 +170,10 @@ public class Level_Manager : MonoBehaviour
     }
 
 
-
+    public string GetJson()
+    {
+        return level;
+    }
     public void LoadLevel()
     {
         
