@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     // Once the game starts up, define the instance of GameManager as this
     private void Awake() 
     {
+        
         // If there is already a GameManager in the loaded scene, destroy the new one and keep the old one
         if (GameManager.instance != null) 
         {
@@ -27,16 +28,18 @@ public class GameManager : MonoBehaviour
         //  when starting again
         PlayerPrefs.DeleteAll();
 
-        if (SceneManager.GetActiveScene().name == "LevelLoad")
-        {
-            lvlManager.LoadLevel();
-        }
 
         instance = this;
         // Once the scene is loaded, SceneManager will go through all functions and execute them,
         //  so we add the LoadState function at the end
         SceneManager.sceneLoaded += LoadState;
+
+
+        
     }
+
+   
+
 
     private void Update()
     {
@@ -53,7 +56,12 @@ public class GameManager : MonoBehaviour
             spawnPoint = GameObject.Find("SpawnPoint");
 
         if (player == null && spawnPoint != null)
-            player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
+            if(GameObject.Find("Player") == null)
+            {
+
+            }
+            else
+                player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
 
         if(camMotor == null && GameObject.FindGameObjectWithTag("MainCamera") != null)
             camMotor = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMotor>();

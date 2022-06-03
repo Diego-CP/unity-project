@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2503704230959585833, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}
+      propertyPath: tilemaps.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2503704230959585833, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}
+      propertyPath: tilemaps.Array.data[0]
+      value: 
+      objectReference: {fileID: 313090125}
+    - target: {fileID: 2503704230959585833, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}
+      propertyPath: tilemaps.Array.data[1]
+      value: 
+      objectReference: {fileID: 313090124}
+    - target: {fileID: 2503704230959585833, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}
+      propertyPath: tilemaps.Array.data[2]
+      value: 
+      objectReference: {fileID: 313090123}
     - target: {fileID: 3151161026270524139, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}
       propertyPath: lvlManager
       value: 
@@ -195,6 +211,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 643fb86b241a0bf468f7c87ad40d44c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1839735485 &313090123 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 2503704231809484016, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}
+  m_PrefabInstance: {fileID: 313090121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &313090124 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 2503704230991152823, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}
+  m_PrefabInstance: {fileID: 313090121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &313090125 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 2503704232227690299, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}
+  m_PrefabInstance: {fileID: 313090121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1104729359
 GameObject:
   m_ObjectHideFlags: 0

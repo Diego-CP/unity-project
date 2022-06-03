@@ -25,7 +25,14 @@ public class deleteItem : MonoBehaviour
     {
         if(sceneName == "Editor")
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && this.gameObject.name.Contains("Player"))
+            {
+                Destroy(this.transform.parent.gameObject);
+                editor.itemButtons[0].quantity++;
+                editor.itemButtons[0].quantityText.text = editor.itemButtons[ID].quantity.ToString();
+            }
+                
+            else if (Input.GetMouseButtonDown(1))
             {
                 Destroy(this.gameObject);
                 editor.itemButtons[ID].quantity++;

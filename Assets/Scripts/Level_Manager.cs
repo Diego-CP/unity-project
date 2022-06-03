@@ -22,6 +22,9 @@ public class Level_Manager : MonoBehaviour
     public GameObject[] possibleObjects;
     public GameObject SpawnPoint;
     private bool flag = false;
+    public List<CustomTile> tiles = new List<CustomTile>();
+    [SerializeField] List<Tilemap> tilemaps = new List<Tilemap>();
+    public Dictionary<int, Tilemap> layers = new Dictionary<int, Tilemap>();
 
 
     // Retrieve the name of this scene.
@@ -34,6 +37,8 @@ public class Level_Manager : MonoBehaviour
     private void Awake()
     {
         sceneName = SceneManager.GetActiveScene().name;
+        Debug.Log(sceneName);
+        layers.Clear();
         if (instance == null) instance = this;
         else Destroy(this);//clear lvl on start
 
@@ -44,15 +49,21 @@ public class Level_Manager : MonoBehaviour
                 if (tilemap.name == num.ToString())
                 {
                     if (!layers.ContainsKey((int)num)) layers.Add((int)num, tilemap);//get all tilemaps
+                    foreach (var Lay in layers)
+                        Debug.Log($"{Lay.Key} {Lay.Value}");
                 }
             }
         }
     }
 
-    public List<CustomTile> tiles = new List<CustomTile>();
-    [SerializeField]List<Tilemap> tilemaps = new List<Tilemap>();
-    public Dictionary<int, Tilemap> layers = new Dictionary<int, Tilemap>();
 
+    private void Start()
+    {
+        if(sceneName == "LevelLoad")
+        {
+            LoadLevel();
+        }
+    }
     public enum Tilemaps
     {
         Floor = 0,
@@ -65,13 +76,15 @@ public class Level_Manager : MonoBehaviour
 
     private void Update()
     {
+
+
         
-        if(sceneName == "Editor")
+
+        if (sceneName == "Editor")
         {
-            
+
             Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-
             if (Input.GetMouseButtonDown(0) && itemButtons[currentButton].clicked)
             {
                 itemButtons[currentButton].clicked = false;
@@ -82,6 +95,7 @@ public class Level_Manager : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.M)) LoadLevel();
         }
+        
 
     }
 
@@ -156,20 +170,24 @@ public class Level_Manager : MonoBehaviour
 
     public void LoadLevel()
     {
-
+        
         string json = File.ReadAllText(Application.dataPath + "/testLevel.json");
+        
         LevelData levelData = JsonUtility.FromJson<LevelData>(json);
+
+        
 
         foreach (var data in levelData.layers)
         {
 
+            
             if (!layers.TryGetValue(data.layer_id, out Tilemap tilemap)) break;
             tilemap.ClearAllTiles();
-
+            Debug.Log("pain");
 
             for (int i = 0; i < data.tiles.Count; i++)
             {
-
+                
                 tilemap.SetTile(new Vector3Int(data.poses_x[i], data.poses_y[i], 0), tiles.Find(t => t.name == data.tiles[i]).tile);
             }
         }
