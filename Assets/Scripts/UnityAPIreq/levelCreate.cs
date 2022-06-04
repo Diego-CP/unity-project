@@ -8,17 +8,29 @@ using System;
 
 public class levelCreate : MonoBehaviour {
  
-    public TMP_InputField _username;
+    public TMP_InputField _userId;
+    public TMP_InputField _name;
+    public GameObject Naming;
     string _levelDoc;
     
     
-    
+    public void ActivateNaming()
+    {
+        Level_Manager lvManager = GameObject.Find("LevelManager").gameObject.GetComponent<Level_Manager>();
+        lvManager.Savelevel();
+        Naming.SetActive(true);
+    }
     public void GetLevel()
     {
         Level_Manager lvManager = GameObject.Find("LevelManager").gameObject.GetComponent<Level_Manager>();
-        _levelDoc = lvManager.GetJson().Replace((char)34, (char)39).Replace(Environment.NewLine, " ");
+        _levelDoc = lvManager.GetJson().Replace((char)34, (char)39).Replace("\n", "");
         Login();
+    }
 
+    public void DeActivateNaming()
+    {
+        GetLevel();
+        Naming.SetActive(false);
     }
     public void Login()
     {
@@ -29,39 +41,26 @@ public class levelCreate : MonoBehaviour {
     {
         var user = new UserLevel
         {
-            id = Int32.Parse(_username.text),
-            userId = 100,
-            name = "Test",
+            userId = Int32.Parse(_userId.text),
+            name = _name.text,
             levelData = _levelDoc,
-          
         };
  
         var body = JsonUtility.ToJson(user);
         Debug.Log(body);
-        UnityWebRequest request = UnityWebRequest.Post("https://api-heavent.herokuapp.com/levels", body);
-        request.SetRequestHeader("content-Type", "application/json");
-        request.SetRequestHeader("Accept", "application/json");
- 
-        yield return request.SendWebRequest();
- 
-        if (request.isNetworkError || request.isHttpError) Debug.Log(request.error);
- 
-        Debug.Log($"Response as byte: {request.downloadHandler.data}");
-        Debug.Log($"Response as string: {request.downloadHandler.text}");
+        using (UnityWebRequest www = UnityWebRequest.Put("https://api-heavent.herokuapp.com/levels", body))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+        }
     }
 }
 
 
 public class UserLevel
 {
-    public int id;
     public int userId;
     public string name;
     public string levelData;
-    int totalDeaths;
-    int totalVictories;
-    int totalEnemies;
-    int totalBosses;
-    int totalLikes;
-    int totalDislikes;
 }

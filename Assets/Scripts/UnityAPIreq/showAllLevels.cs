@@ -3,62 +3,69 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Level{
+public class Level
+{
     public int id;
-    public string name;
     public string levelData;
-    public int userId;
-    public int totalDeaths;
     public int totalVictories;
     public int totalBosses;
+    public int dislikes;
+    public string name;
+    public int userId;
+    public int totalDeaths;
     public int totalEnemies;
     public int likes;
-    public int dislikes;
-}
-/*
-public class ShowAllLevels : MonoBehaviour
-{
     
-    public List<Level> levels = new List<Level>();
+}
+public class LevelsString
+{
+    public List<Level> levels;
+}
+public class showAllLevels : MonoBehaviour
+{
+    public LevelsString Levels;
+    public static Level test;
 
-    void Start()
+    private void Start()
+    {
+        LevelLoadRequest();
+    }
+
+    public void LevelLoadRequest()
     {
         StartCoroutine(GetLevels());
     }
 
-    IEnumerator GetLevels()
+    public IEnumerator GetLevels()
     {
-        using (UnityWebRequest www = UnityWebRequest.Get("https://api-heavent.herokuapp.com/levels"))
+        using (UnityWebRequest www = UnityWebRequest.Get("https://api-heavent.herokuapp.com/levels/7"))
         {
             yield return www.SendWebRequest();
 
-            if (www.isNetworkError || www.isHttpError)
+            if (www.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
+                string jsonString = www.downloadHandler.text;
+            
+                test = JsonUtility.FromJson<Level>(jsonString);
+                GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().lvl = test;
+                Debug.Log(test);
+            
+
             }
             else
             {
-                
-                Debug.Log("Levels: " + www.downloadHandler.text);
-                levels =  JsonHelper.getJsonArray<Level>(www.downloadHandler.text);
-            }
-        }
-        {
-            yield return www.Send();
-
-            if (www.isNetworkError || www.isHttpError)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                // Show results as text
-                Debug.Log(www.downloadHandler.text);
-
-                // Or retrieve results as binary data
-                byte[] results = www.downloadHandler.data;
+                Debug.Log("Error: " + www.error);
             }
         }
     }
+    
+    public Level rTest()
+    {
+        return test;
+    }
+
+
+ 
+
 }
-*/
+

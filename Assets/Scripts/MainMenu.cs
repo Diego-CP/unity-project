@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void PlayGame() {
-        SceneManager.LoadScene("LevelLoad");
+        SceneManager.LoadScene("LevelSelector");
     }
 
+    public void BuildGame()
+    {
+        SceneManager.LoadScene("Editor");
+    }
     public void QuitGame() {
         Application.Quit();
     }

@@ -10,6 +10,13 @@ public class terrainToggle : MonoBehaviour
     {
         
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            toggle = !toggle;
+        }
+    }
 
     // Update is called once per frame
     public void ButtonClicked()

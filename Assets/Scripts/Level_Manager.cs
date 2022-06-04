@@ -60,9 +60,11 @@ public class Level_Manager : MonoBehaviour
 
     private void Start()
     {
-        if(sceneName == "LevelLoad")
+        if (sceneName == "LevelLoad")
         {
-            LoadLevel();
+
+            Debug.Log(GameObject.Find("Retain").GetComponent<RetainOnLoad>().lvl.levelData);
+            LoadLevel(GameObject.Find("Retain").GetComponent<RetainOnLoad>().lvl, false);
         }
     }
     public enum Tilemaps
@@ -72,8 +74,6 @@ public class Level_Manager : MonoBehaviour
         Collision = 5
         
     }
-
-
 
     private void Update()
     {
@@ -93,8 +93,8 @@ public class Level_Manager : MonoBehaviour
 
             }
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.A)) Savelevel();
-
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.M)) LoadLevel();
+            
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.M)) LoadLevel(new Level(), true);
         }
         
 
@@ -162,7 +162,7 @@ public class Level_Manager : MonoBehaviour
         string json = JsonUtility.ToJson(levelData, true);
         level = json;
         Debug.Log(level);
-        //File.WriteAllText(Application.dataPath + "/testLevel.json", json);
+        File.WriteAllText(Application.dataPath + "/testLevel.json", json);
 
         //debug
         Debug.Log("Level was saved");
@@ -174,13 +174,19 @@ public class Level_Manager : MonoBehaviour
     {
         return level;
     }
-    public void LoadLevel()
+    public void LoadLevel(Level dlFile, bool def = true)
     {
-        
-        string json = File.ReadAllText(Application.dataPath + "/testLevel.json");
-        
-        LevelData levelData = JsonUtility.FromJson<LevelData>(json);
-
+        LevelData levelData;
+        if (def)
+        {
+            string json;
+            json = File.ReadAllText(Application.dataPath + "/testLevel.json");
+            levelData = JsonUtility.FromJson<LevelData>(json);
+        }
+        else
+        {
+            levelData = JsonUtility.FromJson<LevelData>(dlFile.levelData.Replace((char)39,(char)34));
+        }
         
 
         foreach (var data in levelData.layers)
