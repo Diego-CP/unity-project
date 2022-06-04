@@ -63,8 +63,8 @@ public class Level_Manager : MonoBehaviour
         if (sceneName == "LevelLoad")
         {
 
-            Debug.Log(GameObject.Find("Retain").GetComponent<RetainOnLoad>().lvl.levelData);
-            LoadLevel(GameObject.Find("Retain").GetComponent<RetainOnLoad>().lvl, false);
+            Debug.Log(GameObject.Find("Retain").GetComponent<RetainOnLoad>().lvl[7]);
+            LoadLevel(GameObject.Find("Retain").GetComponent<RetainOnLoad>().lvl[7], false);
         }
     }
     public enum Tilemaps
@@ -162,7 +162,7 @@ public class Level_Manager : MonoBehaviour
         string json = JsonUtility.ToJson(levelData, true);
         level = json;
         Debug.Log(level);
-        File.WriteAllText(Application.dataPath + "/testLevel.json", json);
+        //File.WriteAllText(Application.dataPath + "/testLevel.json", json);
 
         //debug
         Debug.Log("Level was saved");

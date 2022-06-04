@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class RetainOnLoad : MonoBehaviour
 {
-    public Level lvl;
+    public List<Level> lvl;
     private void Awake()
     {
         
