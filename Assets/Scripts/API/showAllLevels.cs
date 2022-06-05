@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Level
 {
@@ -23,13 +24,18 @@ public class showAllLevels : MonoBehaviour
     public List<Level> Levels;
     public static Level test;
     private string constring = "https://api-heavent.herokuapp.com/levels";
+    bool load;
+    public GameObject levelEntryItem;
+    public Transform scroll;
 
 
     private void Start()
     {
+        load = true;
         LevelLoadRequest();
-    }
+        
 
+    }
     public void LevelLoadRequest()
     {
         StartCoroutine(GetLevels());
@@ -54,7 +60,6 @@ public class showAllLevels : MonoBehaviour
                     if(i < prefilter.Length-1)
                         prefilter[i] = prefilter[i].Substring(3);  
                     prefilter[i - 1] = prefilter[i - 1] + "\"dislikes\": " + dislik + "}";
-                    //prefilter[i].Replace((char)39, (char)34);
                     Debug.Log(prefilter[i-1]);
                     Level yes = JsonUtility.FromJson<Level>(prefilter[i - 1]);
                     Levels.Add(yes);
@@ -66,9 +71,29 @@ public class showAllLevels : MonoBehaviour
             }
         }
         GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().lvl = Levels;
+        if (load)
+            dislpayLevels(Levels) ;
+        load = false;
+
 
     }
-    
+
+    public void dislpayLevels(List<Level> levels)
+    {
+       
+        
+        for (int i = 0; i < levels.Count; i++)
+        {
+            GameObject displayItem = Instantiate(levelEntryItem, transform.position, Quaternion.identity);
+
+            displayItem.transform.SetParent(scroll);
+            displayItem.GetComponent<entryData>().lvlName = levels[i].name;
+            displayItem.GetComponent<entryData>().lvlID = levels[i].userId.ToString();
+            displayItem.GetComponent<entryData>().lvlCreator = levels[i].id.ToString();
+            displayItem.GetComponent<entryData>().lvlData = levels[i].levelData;
+        }
+    }
+
     public Level rTest()
     {
         return test;

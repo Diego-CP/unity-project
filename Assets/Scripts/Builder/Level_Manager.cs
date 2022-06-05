@@ -63,8 +63,8 @@ public class Level_Manager : MonoBehaviour
         if (sceneName == "LevelLoad")
         {
 
-            Debug.Log(GameObject.Find("Retain").GetComponent<RetainOnLoad>().lvl[7]);
-            LoadLevel(GameObject.Find("Retain").GetComponent<RetainOnLoad>().lvl[7], false);
+            Debug.Log(GameObject.Find("Retain").GetComponent<RetainOnLoad>().currentLvlData);
+            LoadLevel(GameObject.Find("Retain").GetComponent<RetainOnLoad>().currentLvlData, false);
         }
     }
     public enum Tilemaps
@@ -94,7 +94,7 @@ public class Level_Manager : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.A)) Savelevel();
             
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.M)) LoadLevel(new Level(), true);
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.M)) LoadLevel("", true);
         }
         
 
@@ -174,7 +174,7 @@ public class Level_Manager : MonoBehaviour
     {
         return level;
     }
-    public void LoadLevel(Level dlFile, bool def = true)
+    public void LoadLevel(string dlFile, bool def = true)
     {
         LevelData levelData;
         if (def)
@@ -185,7 +185,7 @@ public class Level_Manager : MonoBehaviour
         }
         else
         {
-            levelData = JsonUtility.FromJson<LevelData>(dlFile.levelData.Replace((char)39,(char)34));
+            levelData = JsonUtility.FromJson<LevelData>(dlFile.Replace((char)39,(char)34));
         }
         
 

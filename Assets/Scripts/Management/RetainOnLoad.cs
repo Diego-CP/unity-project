@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class RetainOnLoad : MonoBehaviour
 {
     public List<Level> lvl;
+    public string currentLvlData;
     private void Awake()
     {
         
@@ -18,20 +19,6 @@ public class RetainOnLoad : MonoBehaviour
         
     }
 
-    /*
-    void OnEnable()
-    {
-        Debug.Log("OnEnable called");
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if(scene.name == "LevelSelector")
-        {
-            
-        }
-    }
-    */
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Menu")
