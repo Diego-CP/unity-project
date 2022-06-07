@@ -9,9 +9,11 @@ public class RetainOnLoad : MonoBehaviour
     private string userName;
     private int userId;
 
+    public User usr;
+
     // current level stats
-    private int currentLevelId;
-    private int victory; // 0 = win | 1 = loss | 2 = null
+    public int currentLevelId;
+    public int victory; // 0 = win | 1 = loss | 2 = null
 
     // level loading
     public List<Level> lvl;
@@ -26,10 +28,9 @@ public class RetainOnLoad : MonoBehaviour
         }
     }
 
-    public void setUser(string user, int id)
+    public void setUser(User user)
     {
-        this.userName = user;
-        this.userId = id;
+       usr = user;
     }
 
     void Update()

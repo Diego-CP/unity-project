@@ -40,7 +40,7 @@ public class LoginMenu : MonoBehaviour
                     string raw = www.downloadHandler.text;
                     user = JsonUtility.FromJson<User>(raw);
 
-                    Retain.setUser(user.username, user.id);
+                    Retain.setUser(user);
                     user = null;
 
                     SceneManager.LoadScene("Menu");

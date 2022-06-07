@@ -83,8 +83,12 @@ MonoBehaviour:
   SpawnPoint: {fileID: 6659625459824163237, guid: 7be8d95dca2d0914da8a0366734edc3a, type: 3}
   tiles:
   - {fileID: 11400000, guid: 99f40d3c5ce62074a92195166b61b8ee, type: 2}
+  - {fileID: 11400000, guid: b6dd58d6b47f5c041be16b65b147904c, type: 2}
+  - {fileID: 11400000, guid: 780760e50eeccda4d9f0456cf44deca0, type: 2}
   - {fileID: 11400000, guid: 7851f85b99a05784da7d3c9307a10b8e, type: 2}
+  - {fileID: 11400000, guid: aecb145be1130a845b8793cdc5c177b1, type: 2}
   tilemaps:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  level: 

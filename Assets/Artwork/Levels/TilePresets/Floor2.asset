@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48e6c622b4fbf6f4c9661e32751baf9f, type: 3}
-  m_Name: Floor
+  m_Name: Floor2
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 8df9dc25be6fae741ba7a2be7672f131, type: 2}
-  id: Floor
+  tile: {fileID: 11400000, guid: e3fa3d4985c776c48a63d134de948ddc, type: 2}
+  id: Floor2
   tilemap: 0

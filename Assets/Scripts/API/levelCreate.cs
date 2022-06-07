@@ -32,6 +32,10 @@ public class levelCreate : MonoBehaviour {
         GetLevel();
         Naming.SetActive(false);
     }
+    public void CloseTab()
+    {
+        Naming.SetActive(false);
+    }
     public void Login()
     {
         StartCoroutine(Post());

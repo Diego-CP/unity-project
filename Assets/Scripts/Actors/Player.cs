@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Player : Mover 
 {
     private bool isAlive = true;
@@ -12,6 +12,7 @@ public class Player : Mover
     public float currentX;
     public float currentY;
     private SpellInventory spellInv;
+    public PlayerStats ps;
 
     private void Awake()
     {
@@ -126,8 +127,15 @@ public class Player : Mover
     // Function to load the Death scene once the Player dies
     protected override void Death() 
     {
-        isAlive = false;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Death");
+        if(SceneManager.GetActiveScene().name != "Editor")
+        {
+            isAlive = false;
+            GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr.played++;
+            ps.gameObject.GetComponent<PlayerStats>().addData();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Death");
+            
+        }
+        
     }
 
     // Update movement ecery frame according to input

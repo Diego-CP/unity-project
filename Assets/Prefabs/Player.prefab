@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7747713570681292881}
   - component: {fileID: 545398209530206766}
   - component: {fileID: 5066088219262230978}
+  - component: {fileID: 7364098504219985865}
   m_Layer: 9
   m_Name: Player
   m_TagString: Fighter
@@ -112,6 +113,7 @@ MonoBehaviour:
   Weapon: {fileID: 7736999751082003687, guid: 5464696015ad7c345a71c19df5088d1b, type: 3}
   currentX: 0
   currentY: 0
+  ps: {fileID: 7364098504219985865}
 --- !u!61 &4223319416779468681
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -183,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbb6317b0b20e14f945f97a9c0f77bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps: {fileID: 7364098504219985865}
 --- !u!114 &5066088219262230978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +206,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ui: {fileID: 0}
+--- !u!114 &7364098504219985865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223319416779468680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c30789d628f974c812c5e7bcff9825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

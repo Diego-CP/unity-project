@@ -50,6 +50,7 @@ public class showAllLevels : MonoBehaviour
             {
                 string raw = www.downloadHandler.text;
                 string elements = raw.Substring(1, raw.Length - 2);
+              
                 string[] prefilter = elements.Split("\"dislikes\":");
                 int dislik;
 
@@ -61,7 +62,7 @@ public class showAllLevels : MonoBehaviour
                         prefilter[i] = prefilter[i].Substring(3);  
                     
                     prefilter[i - 1] = prefilter[i - 1] + "\"dislikes\": " + dislik + "}";
-                    Debug.Log(prefilter[i-1]);
+                  
                     Level yes = JsonUtility.FromJson<Level>(prefilter[i - 1]);
                     Levels.Add(yes);
                 }

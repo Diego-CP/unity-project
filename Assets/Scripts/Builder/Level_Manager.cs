@@ -50,8 +50,6 @@ public class Level_Manager : MonoBehaviour
                 if (tilemap.name == num.ToString())
                 {
                     if (!layers.ContainsKey((int)num)) layers.Add((int)num, tilemap);//get all tilemaps
-                    foreach (var Lay in layers)
-                        Debug.Log($"{Lay.Key} {Lay.Value}");
                 }
             }
         }
@@ -62,8 +60,6 @@ public class Level_Manager : MonoBehaviour
     {
         if (sceneName == "LevelLoad")
         {
-
-            Debug.Log(GameObject.Find("Retain").GetComponent<RetainOnLoad>().currentLvlData);
             LoadLevel(GameObject.Find("Retain").GetComponent<RetainOnLoad>().currentLvlData, false);
         }
     }
@@ -195,7 +191,7 @@ public class Level_Manager : MonoBehaviour
             
             if (!layers.TryGetValue(data.layer_id, out Tilemap tilemap)) break;
             tilemap.ClearAllTiles();
-            Debug.Log("pain");
+            
 
             for (int i = 0; i < data.tiles.Count; i++)
             {
@@ -228,7 +224,6 @@ public class Level_Manager : MonoBehaviour
         
         foreach (var item in levelData.items)
         {
-            Debug.Log(item.assetName);
             for (int i = 0; i < possibleObjects.Length; i++)
             {
                 if (item.assetName.Contains(possibleObjects[i].name))
