@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Editor.unity
     guid: 6c3531a18c6249b48b969721aaa14e41
+  - enabled: 1
+    path: Assets/Scenes/Login.unity
+    guid: 2d3bfc5caccdb4a4cb06da7634aa72cc
   m_configObjects: {}
