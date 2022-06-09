@@ -9,6 +9,7 @@ using System;
 public class levelCreate : MonoBehaviour {
  
     public TMP_InputField _name;
+    public TMP_InputField _id;
     public GameObject Naming;
     string _levelDoc;
     private RetainOnLoad retain;
@@ -52,7 +53,7 @@ public class levelCreate : MonoBehaviour {
     {
         var user = new UserLevel
         {
-            userId = retain.userId,
+            userId = _id.text,
             name = _name.text,
             levelData = _levelDoc,
         };
@@ -71,7 +72,7 @@ public class levelCreate : MonoBehaviour {
 
 public class UserLevel
 {
-    public int userId;
+    public string userId;
     public string name;
     public string levelData;
 }
