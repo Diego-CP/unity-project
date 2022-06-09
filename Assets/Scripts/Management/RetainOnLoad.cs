@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+
 
 public class RetainOnLoad : MonoBehaviour
 {
     // user identity
     private string userName;
-    private int userId;
+    public int userId;
 
     public User usr;
 
     // current level stats
     public int currentLevelId;
-    public int victory; // 0 = win | 1 = loss | 2 = null
+    public int victory; // 0 = victory | 1 = loss | 2 = null
+    public DateTime initialTime;
+    public DateTime finalTime;
 
     // level loading
     public List<Level> lvl;

@@ -8,11 +8,15 @@ using System;
 
 public class levelCreate : MonoBehaviour {
  
-    public TMP_InputField _userId;
     public TMP_InputField _name;
     public GameObject Naming;
     string _levelDoc;
-    
+    private RetainOnLoad retain;
+
+    private void Update() {
+        if(retain == null)
+            retain = GameObject.Find("Retain").GetComponent<RetainOnLoad>();
+    }    
     
     public void ActivateNaming()
     {
@@ -20,6 +24,7 @@ public class levelCreate : MonoBehaviour {
         lvManager.Savelevel();
         Naming.SetActive(true);
     }
+
     public void GetLevel()
     {
         Level_Manager lvManager = GameObject.Find("LevelManager").gameObject.GetComponent<Level_Manager>();
@@ -32,10 +37,12 @@ public class levelCreate : MonoBehaviour {
         GetLevel();
         Naming.SetActive(false);
     }
+
     public void CloseTab()
     {
         Naming.SetActive(false);
     }
+
     public void Login()
     {
         StartCoroutine(Post());
@@ -45,13 +52,14 @@ public class levelCreate : MonoBehaviour {
     {
         var user = new UserLevel
         {
-            userId = Int32.Parse(_userId.text),
+            userId = retain.userId,
             name = _name.text,
             levelData = _levelDoc,
         };
  
         var body = JsonUtility.ToJson(user);
         Debug.Log(body);
+        
         using (UnityWebRequest www = UnityWebRequest.Put("https://api-heavent.herokuapp.com/levels", body))
         {
             www.method = "POST";
@@ -60,7 +68,6 @@ public class levelCreate : MonoBehaviour {
         }
     }
 }
-
 
 public class UserLevel
 {

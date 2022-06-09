@@ -131,6 +131,7 @@ public class Player : Mover
         {
             isAlive = false;
             GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr.played++;
+            GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr.victory = 1;
             ps.gameObject.GetComponent<PlayerStats>().addData();
             UnityEngine.SceneManagement.SceneManager.LoadScene("Death");
             

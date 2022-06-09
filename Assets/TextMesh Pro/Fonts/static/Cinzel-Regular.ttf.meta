@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: d7f80522dc8e43a43a1755f3fa77e8ed
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Cinzel
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 47a09787978624b4bb3ab0d03d4eb4c7, type: 3}
+  - {fileID: 12800000, guid: 83af11b9f2f6bda45af46f328a8a8216, type: 3}
+  - {fileID: 12800000, guid: 1707855ef5c60d746bce196f54b76d6b, type: 3}
+  - {fileID: 12800000, guid: 96aa8add04729874396df83df6381a5d, type: 3}
+  - {fileID: 12800000, guid: 1fd21c7a4d512d94d939155df2f5ae27, type: 3}
+  - {fileID: 12800000, guid: 55092829b91e5c944b701c028ad4acb9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

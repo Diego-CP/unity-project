@@ -6,14 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelSelector : MonoBehaviour
 {
     public void ToMenu()
-    {
-
-     
+    {     
         SceneManager.LoadScene("LevelLoad");
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

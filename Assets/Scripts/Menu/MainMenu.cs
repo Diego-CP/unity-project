@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Editor");
     }
+    
     public void QuitGame() {
         Application.Quit();
     }
