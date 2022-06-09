@@ -33,7 +33,6 @@ public class ItemController : MonoBehaviour
             clicked = true;
 
 
-            Debug.Log("limited");
             quantity--;
             quantityText.text = quantity.ToString();
             editor.currentButton = ID;
@@ -42,7 +41,6 @@ public class ItemController : MonoBehaviour
         {
             Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-            Debug.Log("unlimited");
             clicked = true;
             editor.currentButton = ID;
 

@@ -14,15 +14,6 @@ public class PlayerStats : MonoBehaviour
     {
         User usr = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr;
 
-        if(GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().victory == 0)
-        {
-            usr.victory = 1;
-        }
-        else
-        {
-            usr.victory = 0;
-        }
-
         string raw = "{" + $"\"victory\":{usr.victory},\"played\":{usr.played}" + "}";
 
         using (UnityWebRequest www = UnityWebRequest.Put($"https://api-heavent.herokuapp.com/users/{usr.id}", raw))

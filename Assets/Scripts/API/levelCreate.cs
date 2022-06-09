@@ -9,7 +9,6 @@ using System;
 public class levelCreate : MonoBehaviour {
  
     public TMP_InputField _name;
-    public TMP_InputField _id;
     public GameObject Naming;
     string _levelDoc;
     private RetainOnLoad retain;
@@ -53,7 +52,7 @@ public class levelCreate : MonoBehaviour {
     {
         var user = new UserLevel
         {
-            userId = _id.text,
+            userId = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr.id.ToString(),
             name = _name.text,
             levelData = _levelDoc,
         };

@@ -3,7 +3,9 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.IO;
 
+[System.Serializable]
 public class Level
 {
     public int id;
@@ -16,9 +18,13 @@ public class Level
     public int totalDeaths;
     public int totalEnemies;
     public int likes;
-    
 }
 
+[System.Serializable]
+public class leveling
+{
+    public List<Level> ls;
+}
 public class showAllLevels : MonoBehaviour
 {
     public List<Level> Levels;
@@ -27,6 +33,7 @@ public class showAllLevels : MonoBehaviour
     bool load;
     public GameObject levelEntryItem;
     public Transform scroll;
+    public leveling lsx;
 
     private void Start()
     {
@@ -45,39 +52,21 @@ public class showAllLevels : MonoBehaviour
         {
             Levels = new List<Level>();
             yield return www.SendWebRequest();
-
             if (www.result == UnityWebRequest.Result.Success)
             {
                 string raw = www.downloadHandler.text;
-                string elements = raw.Substring(1, raw.Length - 2);
-              
-                string[] prefilter = elements.Split("\"dislikes\":");
-                int dislik;
-
-                for (int i = 1; i < prefilter.Length; i++)
-                {
-                    dislik =  (int)char.GetNumericValue((prefilter[i][0]));
-
-                    if(i < prefilter.Length-1)
-                        prefilter[i] = prefilter[i].Substring(3);  
-                    
-                    prefilter[i - 1] = prefilter[i - 1] + "\"dislikes\": " + dislik + "}";
-                  
-                    Level yes = JsonUtility.FromJson<Level>(prefilter[i - 1]);
-                    Levels.Add(yes);
-                }
+                string raw2 = "{ \"ls\":" + raw + "}";
+                lsx = JsonUtility.FromJson<leveling>(raw2);            
             }
             else
             {
                 Debug.Log("Error: " + www.error);
             }
         }
-
-        GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().lvl = Levels;
+        GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().lvl = lsx.ls;
 
         if (load)
-            dislpayLevels(Levels);
-
+            dislpayLevels(lsx.ls);
         load = false;
     }
 
@@ -94,9 +83,6 @@ public class showAllLevels : MonoBehaviour
         }
     }
 
-    public Level rTest()
-    {
-        return test;
-    }
+
 }
 
