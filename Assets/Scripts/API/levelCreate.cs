@@ -15,7 +15,7 @@ public class levelCreate : MonoBehaviour {
     private RetainOnLoad retain;
 
     private void Update() {
-        if(retain == null)
+        if(retain == null && GameObject.Find("Retain") != null)
             retain = GameObject.Find("Retain").GetComponent<RetainOnLoad>();
     }    
     
