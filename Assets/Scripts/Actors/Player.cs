@@ -12,7 +12,7 @@ public class Player : Mover
     public float currentX;
     public float currentY;
     private SpellInventory spellInv;
-    public PlayerStats ps;
+    public LevelStats lvlStats;
 
     private void Awake()
     {
@@ -130,9 +130,7 @@ public class Player : Mover
         if(SceneManager.GetActiveScene().name != "Editor")
         {
             isAlive = false;
-            GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr.played++;
-            GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr.victory = 1;
-            ps.gameObject.GetComponent<PlayerStats>().addData();
+            lvlStats.getData(0, 0, 1);
             UnityEngine.SceneManagement.SceneManager.LoadScene("Death");
             
         }

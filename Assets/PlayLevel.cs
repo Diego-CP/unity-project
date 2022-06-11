@@ -8,10 +8,12 @@ public class PlayLevel : MonoBehaviour
 {
     public void Playlvl()
     {
-        GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().currentLvlData = 
+        RetainOnLoad retain = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>();
+        retain.currentLvlData = 
             gameObject.transform.parent.gameObject.GetComponent<entryData>().lvlData;
-        GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().currentLevelId =
+        retain.currentLevelId =
             Int32.Parse(gameObject.transform.parent.gameObject.GetComponent<entryData>().lvlID);
         SceneManager.LoadScene("LevelLoad");
+        retain.initialTime = DateTime.Now;
     }
 }

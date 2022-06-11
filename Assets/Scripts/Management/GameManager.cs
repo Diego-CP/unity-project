@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Level_Manager lvlManager;
     public CameraMotor camMotor;
     public SpellInventory si;
+    public LevelStats lStats;
 
     // Once the game starts up, define the instance of GameManager as this
     private void Awake() 
@@ -79,9 +80,18 @@ public class GameManager : MonoBehaviour
             si.slots[0] = GameObject.Find("Slot1");
             si.slots[1] = GameObject.Find("Slot2");
         }
+        if (lStats == null && GameObject.Find("lvlStats") != null)
+        {
+            lStats = GameObject.Find("lvlStats").gameObject.GetComponent<LevelStats>();
+            GameObject play = GameObject.Find("Player");
+            play.gameObject.GetComponent<Player>().lvlStats = lStats;
+            play.gameObject.GetComponent<VictoryCheck>().lvlStats = lStats;
+        }
+           
 
         if (camMotor == null && GameObject.FindGameObjectWithTag("MainCamera") != null)
             camMotor = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMotor>();
+        
 
         if(camMotor.lookAt == null && GameObject.Find("Player") != null)
             camMotor.lookAt = GameObject.Find("Player").transform;

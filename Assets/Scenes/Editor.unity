@@ -685,11 +685,11 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 0.74760354
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 791
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3530,6 +3530,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!20 &927167021 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2850494540015286493, guid: 1adbca6c60b9b4b4d800f2e9481e0d2e, type: 3}
+  m_PrefabInstance: {fileID: 1379303297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &930788405
 GameObject:
   m_ObjectHideFlags: 0
@@ -5305,7 +5310,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2850494540015286493, guid: 1adbca6c60b9b4b4d800f2e9481e0d2e, type: 3}
       propertyPath: orthographic size
-      value: 383.591
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2850494540015286495, guid: 1adbca6c60b9b4b4d800f2e9481e0d2e, type: 3}
       propertyPath: m_Name
@@ -7625,5 +7630,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 8919871256416626309, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 927167021}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0932133cd3efd2e4a9af6bbde0a69488, type: 3}

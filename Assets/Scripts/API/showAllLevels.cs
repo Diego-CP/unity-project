@@ -77,8 +77,8 @@ public class showAllLevels : MonoBehaviour
             GameObject displayItem = Instantiate(levelEntryItem, transform.position, Quaternion.identity);
             displayItem.transform.SetParent(scroll);
             displayItem.GetComponent<entryData>().lvlName = levels[i].name;
-            displayItem.GetComponent<entryData>().lvlID = levels[i].userId.ToString();
-            displayItem.GetComponent<entryData>().lvlCreator = levels[i].id.ToString();
+            displayItem.GetComponent<entryData>().lvlID = levels[i].id.ToString();
+            displayItem.GetComponent<entryData>().lvlCreator = levels[i].userId.ToString();
             displayItem.GetComponent<entryData>().lvlData = levels[i].levelData;
         }
     }

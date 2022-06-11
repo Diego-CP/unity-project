@@ -880,8 +880,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df53734ffc6a0ae459aa0bc4abbd796d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Levels: []
   levelEntryItem: {fileID: 1157569091737939129, guid: 26dba3758e8c83040ba4e5587fa3f4b9, type: 3}
   scroll: {fileID: 393621384}
+  lsx:
+    ls: []
 --- !u!4 &1365365791
 Transform:
   m_ObjectHideFlags: 0

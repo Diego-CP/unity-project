@@ -29,12 +29,21 @@ public class Level_Manager : MonoBehaviour
     public string reload;
     public GameObject currentInstance;
     public GameObject emptyParent;
+    public GameObject lvlStatsPrefab;
+    private GameObject i;
 
     // Retrieve the name of this scene.
     string sceneName;
 
     private void Awake()
     {
+        if (GameObject.Find("lvlStats") == null && SceneManager.GetActiveScene().name == "LevelLoad")
+        {
+            i = Instantiate(lvlStatsPrefab, new Vector3Int(0, 0, 0), Quaternion.identity);
+            i.name = "lvlStats";
+        }
+
+
         sceneName = SceneManager.GetActiveScene().name;
         reload = null;
         Debug.Log(sceneName);
@@ -198,7 +207,6 @@ public class Level_Manager : MonoBehaviour
         {
             if (item.assetName.Contains("SpawnPoint"))
             {
-                Debug.Log("happens");
                 flag = true;
                 GameObject obj = Instantiate(SpawnPoint, item.assetPosition, Quaternion.identity);
                 obj.name = obj.name.Replace("(Clone)", "");

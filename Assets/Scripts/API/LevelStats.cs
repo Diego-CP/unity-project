@@ -1,74 +1,103 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.Networking;
 
-public class LevelStats : MonoBehaviour
-{
-    private LvlStats lvlStats = new LvlStats();
 
-    public void addData()
-    {
-        StartCoroutine(Post());
-    }
-
-    IEnumerator Post()
-    {
-        RetainOnLoad retain = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>();
-
-        using (UnityWebRequest www = UnityWebRequest.Get($"https://api-heavent.herokuapp.com/level_stats/{retain.userId}/{retain.currentLevelId}"))
-        {
-            yield return www.SendWebRequest();
-            
-            if (www.result == UnityWebRequest.Result.Success)
-            {
-                if(www.downloadHandler.text != "null")
-                {   
-                    string rawGet = www.downloadHandler.text;
-                    lvlStats = JsonUtility.FromJson<LvlStats>(rawGet);
-
-                    if(retain.victory == 0)
-                    {
-                        lvlStats.victories += 1;
-                    }
-                    else if(retain.victory == 1)
-                    {
-                        lvlStats.deaths += 1;
-                    }
-                    
-                    if((retain.finalTime - retain.initialTime) < lvlStats.time)
-                        lvlStats.time = (retain.finalTime - retain.initialTime);
-
-                    string rawPut = "{" + $"\"deaths\":{lvlStats.deaths},\"time\":{lvlStats.time.Minutes},\"victories\":{lvlStats.victories}" + "}";
-
-                    using (UnityWebRequest ww = UnityWebRequest.Put($"https://api-heavent.herokuapp.com/level_stats/{retain.userId}/{retain.currentLevelId}", rawPut))
-                    {
-                        ww.method = "PUT";
-                        ww.SetRequestHeader("Content-Type", "application/json");
-                        yield return ww.SendWebRequest();
-
-                        if (www.result != UnityWebRequest.Result.Success)
-                            Debug.Log("Error: " + ww.error);            
-                    }
-
-                    lvlStats = null;
-                }
-            }
-            else
-            {
-                Debug.Log("Error: " + www.error);
-            }
-        }
-    }
-}
-
-public class LvlStats
+public class lvlStats
 {
     public int id;
     public int deaths;
     public int victories;
-    public int userId;
     public int levelId;
-    public TimeSpan time;
+    public int userId;
+    public int time;
+}
+public class LevelStats : MonoBehaviour
+{
+
+    public void getData(int seg, int vic, int deth)
+    {
+        StartCoroutine(Get(seg,vic,deth));
+    }
+
+    IEnumerator Get(int seg, int vic, int deth)
+    {
+        RetainOnLoad retain =  GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>();
+        User usr = retain.usr;
+        int lvlid = retain.currentLevelId;
+        Debug.Log("xd");
+        string send = $"https://api-heavent.herokuapp.com/level_stats/{usr.id}/{lvlid}";
+        Debug.Log(send);
+        using (UnityWebRequest www = UnityWebRequest.Get(send))
+        {
+            yield return www.SendWebRequest();
+            Debug.Log("heh");
+            if (www.result != UnityWebRequest.Result.Success)
+                Debug.Log("Error: " + www.error);
+            else
+            {
+                string raw = www.downloadHandler.text;
+                if(raw == "null")
+                {
+                    string postJson = "{" + $"\"levelId\":{retain.currentLevelId},\"userId\":{usr.id},\"time\":{seg},\"victories\":{vic},\"deaths\":{deth}" + "}";
+
+                    StartCoroutine(Create(postJson));
+                }
+                else
+                {
+                    lvlStats json = JsonUtility.FromJson<lvlStats>(raw);
+                    if(json.time > seg)
+                        json.time = seg;
+                    json.victories += vic;
+                    json.deaths += deth;
+                    StartCoroutine(Up(JsonUtility.ToJson(json)));
+
+                }
+            }
+        }
+
+        usr = null;
+    }
+
+    IEnumerator Create(string contents)
+    {
+        User usr = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr;
+        int lvlid = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().currentLevelId;
+        Debug.Log(contents);
+        using (UnityWebRequest www = UnityWebRequest.Put($"https://api-heavent.herokuapp.com/level_stats", contents))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+                Debug.Log("Error: " + www.error);
+        }
+
+        usr = null;
+        Destroy(gameObject);
+    }
+
+    IEnumerator Up(string contents)
+    {
+        User usr = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr;
+        int lvlid = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().currentLevelId;
+
+        using (UnityWebRequest www = UnityWebRequest.Put($"https://api-heavent.herokuapp.com/level_stats/{usr.id}/{lvlid}", contents))
+        {
+            www.method = "PUT";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+                Debug.Log("Error: " + www.error);
+            
+        }
+
+        usr = null;
+        Destroy(gameObject);
+    }
+
+
 }
