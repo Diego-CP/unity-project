@@ -26,6 +26,9 @@ public class Level_Manager : MonoBehaviour
     [SerializeField] List<Tilemap> tilemaps = new List<Tilemap>();
     public Dictionary<int, Tilemap> layers = new Dictionary<int, Tilemap>();
     public string level;
+    public string reload;
+    public GameObject currentInstance;
+    public GameObject emptyParent;
 
     // Retrieve the name of this scene.
     string sceneName;
@@ -33,12 +36,13 @@ public class Level_Manager : MonoBehaviour
     private void Awake()
     {
         sceneName = SceneManager.GetActiveScene().name;
+        reload = null;
         Debug.Log(sceneName);
         layers.Clear();
         if (instance == null) instance = this;
         else Destroy(this);//clear lvl on start
-
-        foreach(Tilemap tilemap in tilemaps)
+        currentInstance = Instantiate(emptyParent, new Vector3(0, 0, 0), Quaternion.identity);
+        foreach (Tilemap tilemap in tilemaps)
         {
             foreach(Tilemaps num in System.Enum.GetValues(typeof(Tilemaps)))
             {
@@ -74,7 +78,9 @@ public class Level_Manager : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && itemButtons[currentButton].clicked)
             {
                 itemButtons[currentButton].clicked = false;
-                Instantiate(itemPrefabs[currentButton], new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
+                GameObject item = Instantiate(itemPrefabs[currentButton], new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
+                item.name = item.name.Replace("(Clone)", "");
+                item.transform.SetParent(currentInstance.transform);
             }
 
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.A)) 
@@ -92,8 +98,9 @@ public class Level_Manager : MonoBehaviour
         GameObject[] assets1 = GameObject.FindGameObjectsWithTag(saveAssetTag1); 
         GameObject[] assets2 = GameObject.FindGameObjectsWithTag(saveAssetTag2);
         GameObject[] assets3 = GameObject.FindGameObjectsWithTag(saveAssetTag3);
+        GameObject[] assets4 = GameObject.FindGameObjectsWithTag(saveAssetTag4);
         //GameObject[] assets3 = GameObject.FindGameObjectsWithTag("MainCamera");
-        assetsToSave = assets1.Concat(assets2).ToArray().Concat(assets3).ToArray();
+        assetsToSave = assets1.Concat(assets2).ToArray().Concat(assets3).ToArray().Concat(assets4).ToArray();
 
         foreach (var item in assetsToSave)
         {
@@ -139,9 +146,10 @@ public class Level_Manager : MonoBehaviour
         string json = JsonUtility.ToJson(levelData, true);
         level = json;
         Debug.Log(level);
-        //File.WriteAllText(Application.dataPath + "/testLevel.json", json);
-
+        
+        reload = json;
         //debug
+        Debug.Log(reload);
         Debug.Log("Level was saved");
     }
 
@@ -152,11 +160,21 @@ public class Level_Manager : MonoBehaviour
 
     public void LoadLevel(string dlFile, bool def = true)
     {
+        foreach(Tilemap tm in tilemaps)
+        {
+            tm.ClearAllTiles();
+        }
+        foreach(Transform child in currentInstance.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         LevelData levelData;
         if (def)
         {
+
             string json;
-            json = File.ReadAllText(Application.dataPath + "/testLevel.json");
+            json = reload;
             levelData = JsonUtility.FromJson<LevelData>(json);
         }
         else
@@ -180,18 +198,24 @@ public class Level_Manager : MonoBehaviour
         {
             if (item.assetName.Contains("SpawnPoint"))
             {
+                Debug.Log("happens");
                 flag = true;
-                Instantiate(SpawnPoint, item.assetPosition, Quaternion.identity);
+                GameObject obj = Instantiate(SpawnPoint, item.assetPosition, Quaternion.identity);
+                obj.name = obj.name.Replace("(Clone)", "");
+                obj.transform.SetParent(currentInstance.transform);
             }
         }
 
         if (!flag)
         {
-            Instantiate(SpawnPoint, new Vector3Int(0, 0, 0), Quaternion.identity);
+            GameObject obj = Instantiate(SpawnPoint, new Vector3Int(0, 0, 0), Quaternion.identity);
+            obj.transform.SetParent(currentInstance.transform);
+            obj.name = obj.name.Replace("(Clone)", "");
+
         }
 
         item_creation(levelData);
-
+        
         Debug.Log("Level was loaded");
     }
 
@@ -203,7 +227,9 @@ public class Level_Manager : MonoBehaviour
             {
                 if (item.assetName.Contains(possibleObjects[i].name))
                 {
-                    Instantiate(possibleObjects[i], item.assetPosition, Quaternion.identity);
+                    GameObject obj = Instantiate(possibleObjects[i], item.assetPosition, Quaternion.identity);
+                    obj.transform.SetParent(currentInstance.transform);
+                    obj.name = obj.name.Replace("(Clone)", "");
                 }
             }
         }

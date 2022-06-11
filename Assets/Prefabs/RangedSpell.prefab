@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2548152565444417680}
   m_Layer: 0
   m_Name: RangedSpell
-  m_TagString: Untagged
+  m_TagString: Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

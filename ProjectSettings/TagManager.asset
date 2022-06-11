@@ -9,6 +9,7 @@ TagManager:
   - Game
   - Boss
   - Spawn
+  - instance
   layers:
   - Default
   - TransparentFX

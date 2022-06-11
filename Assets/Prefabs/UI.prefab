@@ -379,6 +379,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lvlManager: {fileID: 0}
+  camMotor: {fileID: 0}
+  rSpell: {fileID: 0}
+  aSpell: {fileID: 0}
   spawnPoint: {fileID: 0}
   player: {fileID: 0}
   floatingTextManager: {fileID: 0}

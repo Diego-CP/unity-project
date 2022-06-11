@@ -64,6 +64,7 @@ MonoBehaviour:
   - {fileID: 2980198129176754065, guid: d413dbf2506e89e41b06f79fc093a313, type: 3}
   - {fileID: 6601191132831097640, guid: c070e8dadad4a2d4cbcd876e1ebefee3, type: 3}
   - {fileID: 4374674398035968295, guid: d08a2376d0238614fa72d0a42d727924, type: 3}
+  - {fileID: 6659625459824163237, guid: b05cb77405f79b748ad80133163106d1, type: 3}
   currentButton: 0
   saveAssetTag1: Boss
   saveAssetTag2: Fighter
@@ -80,6 +81,7 @@ MonoBehaviour:
   - {fileID: 2980198129176754065, guid: d413dbf2506e89e41b06f79fc093a313, type: 3}
   - {fileID: 6601191132831097640, guid: c070e8dadad4a2d4cbcd876e1ebefee3, type: 3}
   - {fileID: 4374674398035968295, guid: d08a2376d0238614fa72d0a42d727924, type: 3}
+  - {fileID: 6659625459824163237, guid: b05cb77405f79b748ad80133163106d1, type: 3}
   SpawnPoint: {fileID: 6659625459824163237, guid: 7be8d95dca2d0914da8a0366734edc3a, type: 3}
   tiles:
   - {fileID: 11400000, guid: 99f40d3c5ce62074a92195166b61b8ee, type: 2}
@@ -92,3 +94,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   level: 
+  reload: 
+  currentInstance: {fileID: 0}
+  emptyParent: {fileID: 0}

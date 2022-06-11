@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1543901238893672822}
   - component: {fileID: 1543901238893672821}
   - component: {fileID: 1543901238893672820}
+  - component: {fileID: 2158311284638229736}
   m_Layer: 9
   m_Name: Hitbox
   m_TagString: Untagged
@@ -46,7 +47,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00004285574, y: -0.0053087026}
+  m_Offset: {x: -0.0010507405, y: -0.000101298094}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -57,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.08867347, y: 0.1295509}
+  m_Size: {x: 0.10076809, y: 0.16146731}
   m_EdgeRadius: 0
 --- !u!114 &1543901238893672820
 MonoBehaviour:
@@ -87,6 +88,19 @@ MonoBehaviour:
     maxNormalAngle: 0
   damage: 1
   pushForce: 4
+--- !u!114 &2158311284638229736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543901238893672823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c74d2e70401e24b93f533abc61c737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 1
 --- !u!1 &1543901239537790201
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +113,6 @@ GameObject:
   - component: {fileID: 1543901239537789959}
   - component: {fileID: 1543901239537790200}
   - component: {fileID: 1543901239537789957}
-  - component: {fileID: 9194331389372297745}
   m_Layer: 9
   m_Name: SmallEnemy
   m_TagString: Fighter
@@ -188,7 +201,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0035068989, y: -0.0029278994}
+  m_Offset: {x: 0.0028763711, y: 0.0019435585}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -199,7 +212,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11544901, y: 0.1685403}
+  m_Size: {x: 0.07714933, y: 0.14132738}
   m_EdgeRadius: 0
 --- !u!114 &1543901239537789957
 MonoBehaviour:
@@ -235,16 +248,3 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
---- !u!114 &9194331389372297745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1543901239537790201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5c74d2e70401e24b93f533abc61c737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 1

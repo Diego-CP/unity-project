@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Level_Manager lvlManager;
     public CameraMotor camMotor;
+    public SpellInventory si;
 
     // Once the game starts up, define the instance of GameManager as this
     private void Awake() 
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void getValues()
     {     
+       
         if (spawnPoint == null && GameObject.Find("SpawnPoint") != null)
             spawnPoint = GameObject.Find("SpawnPoint");
 
@@ -61,9 +63,24 @@ public class GameManager : MonoBehaviour
 
             }
             else
+            {
                 player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
+            }
 
-        if(camMotor == null && GameObject.FindGameObjectWithTag("MainCamera") != null)
+            
+        if (si == null && GameObject.Find("Player") != null)
+            si = GameObject.Find("Player").GetComponent<SpellInventory>();
+
+        if (player != null && ui != null && (si.ui == null || si.uiSlots[0] == null))
+        {
+            si.ui = GameObject.Find("UI");
+            si.uiSlots[0] = GameObject.Find("Slot1");
+            si.uiSlots[1] = GameObject.Find("Slot2");
+            si.slots[0] = GameObject.Find("Slot1");
+            si.slots[1] = GameObject.Find("Slot2");
+        }
+
+        if (camMotor == null && GameObject.FindGameObjectWithTag("MainCamera") != null)
             camMotor = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMotor>();
 
         if(camMotor.lookAt == null && GameObject.Find("Player") != null)
@@ -71,7 +88,7 @@ public class GameManager : MonoBehaviour
 
         if (ui == null && GameObject.Find("UI") != null)
             ui = GameObject.Find("UI");
-
+      
         if (hitpointBar == null && ui != null)
             hitpointBar = ui.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<RectTransform>();
 

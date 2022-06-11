@@ -34,10 +34,14 @@ public class deleteItem : MonoBehaviour
                 
             else if (Input.GetMouseButtonDown(1))
             {
-                Destroy(this.gameObject);
-                editor.itemButtons[ID].quantity++;
-                editor.itemButtons[ID].quantityText.text = editor.itemButtons[ID].quantity.ToString();
-
+                if (this.transform.parent.gameObject.name.Contains("SmallEnemy") || this.transform.parent.gameObject.name.Contains("Boss"))
+                    Destroy(this.transform.parent.gameObject);
+                else
+                {
+                    Destroy(this.gameObject);
+                    editor.itemButtons[ID].quantity++;
+                    editor.itemButtons[ID].quantityText.text = editor.itemButtons[ID].quantity.ToString();
+                }
             }
         }
         
