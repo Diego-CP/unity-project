@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
             si.slots[0] = GameObject.Find("Slot1");
             si.slots[1] = GameObject.Find("Slot2");
         }
-        if (lStats == null && GameObject.Find("lvlStats") != null)
+        if (lStats == null && GameObject.Find("lvlStats") != null && GameObject.Find("Player") != null)
         {
             lStats = GameObject.Find("lvlStats").gameObject.GetComponent<LevelStats>();
             GameObject play = GameObject.Find("Player");

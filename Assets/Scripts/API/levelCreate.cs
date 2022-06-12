@@ -66,6 +66,9 @@ public class levelCreate : MonoBehaviour {
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
         }
+
+        user = null;
+
     }
 }
 

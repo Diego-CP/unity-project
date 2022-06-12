@@ -15,6 +15,12 @@ public class lvlStats
 }
 public class LevelStats : MonoBehaviour
 {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            Destroy(gameObject);
+        }
+    }
 
     public void getData(int seg, int vic, int deth)
     {
@@ -26,13 +32,10 @@ public class LevelStats : MonoBehaviour
         RetainOnLoad retain =  GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>();
         User usr = retain.usr;
         int lvlid = retain.currentLevelId;
-        Debug.Log("xd");
         string send = $"https://api-heavent.herokuapp.com/level_stats/{usr.id}/{lvlid}";
-        Debug.Log(send);
         using (UnityWebRequest www = UnityWebRequest.Get(send))
         {
             yield return www.SendWebRequest();
-            Debug.Log("heh");
             if (www.result != UnityWebRequest.Result.Success)
                 Debug.Log("Error: " + www.error);
             else
@@ -47,11 +50,15 @@ public class LevelStats : MonoBehaviour
                 else
                 {
                     lvlStats json = JsonUtility.FromJson<lvlStats>(raw);
+                    int sendSeg = json.time;
+                    int sendVictor = json.victories;
+                    int sendDeath = json.deaths;
                     if(json.time > seg)
-                        json.time = seg;
-                    json.victories += vic;
-                    json.deaths += deth;
-                    StartCoroutine(Up(JsonUtility.ToJson(json)));
+                        sendSeg = seg;
+                    sendVictor += vic;
+                    sendDeath += deth;
+                    string postJson = "{" + $"\"time\":{sendSeg},\"victories\":{sendVictor},\"deaths\":{sendDeath}" + "}";
+                    StartCoroutine(Up(postJson));
 
                 }
             }
@@ -64,7 +71,6 @@ public class LevelStats : MonoBehaviour
     {
         User usr = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr;
         int lvlid = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().currentLevelId;
-        Debug.Log(contents);
         using (UnityWebRequest www = UnityWebRequest.Put($"https://api-heavent.herokuapp.com/level_stats", contents))
         {
             www.method = "POST";
@@ -83,11 +89,12 @@ public class LevelStats : MonoBehaviour
     {
         User usr = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr;
         int lvlid = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().currentLevelId;
-
+        Debug.Log(contents);
         using (UnityWebRequest www = UnityWebRequest.Put($"https://api-heavent.herokuapp.com/level_stats/{usr.id}/{lvlid}", contents))
         {
             www.method = "PUT";
             www.SetRequestHeader("Content-Type", "application/json");
+            Debug.Log(contents);
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)

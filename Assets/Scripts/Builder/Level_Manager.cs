@@ -68,6 +68,7 @@ public class Level_Manager : MonoBehaviour
         if (sceneName == "LevelLoad")
         {
             LoadLevel(GameObject.Find("Retain").GetComponent<RetainOnLoad>().currentLvlData, false);
+            Time.timeScale = 1f;
         }
     }
     public enum Tilemaps

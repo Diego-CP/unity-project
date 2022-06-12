@@ -527,6 +527,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5182816133693997627, guid: 7bbb1c54a94b70944bff1790169eebc0, type: 3}
     - target: {fileID: 1111151697902665533, guid: 51a1e8c2b776c9b409c03560c0d4e22b, type: 3}
+      propertyPath: lvlStatsPrefab
+      value: 
+      objectReference: {fileID: 6305328071136885744, guid: 3ac90419bf033ae4f993e9259872a309, type: 3}
+    - target: {fileID: 1111151697902665533, guid: 51a1e8c2b776c9b409c03560c0d4e22b, type: 3}
       propertyPath: itemButtons.Array.size
       value: 12
       objectReference: {fileID: 0}
