@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
                 player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
             }
 
+        //if (weapon == null && player != null && spawnPoint != null)
+           // weapon = player.transform.GetChild(0).gameObject;
             
         if (si == null && GameObject.Find("Player") != null)
             si = GameObject.Find("Player").GetComponent<SpellInventory>();
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
             si.slots[0] = GameObject.Find("Slot1");
             si.slots[1] = GameObject.Find("Slot2");
         }
+
         if (lStats == null && GameObject.Find("lvlStats") != null && GameObject.Find("Player") != null)
         {
             lStats = GameObject.Find("lvlStats").gameObject.GetComponent<LevelStats>();

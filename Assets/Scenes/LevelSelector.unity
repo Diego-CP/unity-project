@@ -532,7 +532,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -621, y: -259}
+  m_AnchoredPosition: {x: -359.88, y: -252}
   m_SizeDelta: {x: 80.24, y: 80.2402}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &592832576
@@ -780,8 +780,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000023127, y: 0}
-  m_SizeDelta: {x: 1417.5985, y: 678.4557}
+  m_AnchoredPosition: {x: -0.000098462, y: -0.00048065}
+  m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1199904059
 MonoBehaviour:
@@ -1259,7 +1259,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 32.282433
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1324,8 +1324,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.79187, y: -111.637634}
-  m_SizeDelta: {x: 80.0365, y: 58.2986}
+  m_AnchoredPosition: {x: 0.0054932, y: -0.000083923}
+  m_SizeDelta: {x: 152.59, y: 114.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2015039510
 MonoBehaviour:
