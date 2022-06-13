@@ -30,6 +30,9 @@ public class Fighter : MonoBehaviour {
             //  and multiply it by the push force of the damage source
             pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
 
+            // Find the audio manager and play the recieve damage sound with it
+            FindObjectOfType<AudioManager>().Play("RecieveDamage");
+
             // Visual effect for getting hit
             GameManager.instance.ShowText(dmg.damageAmount.ToString(), 25, Color.red, transform.position, Vector3.up * 20, 1.5f);
 

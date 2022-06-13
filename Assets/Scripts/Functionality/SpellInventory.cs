@@ -25,6 +25,10 @@ public class SpellInventory : MonoBehaviour {
                     isFull[i] = true;
                     slots[i] = newSpell;
                     AddImage(newSpell, i);
+
+                    // Find the audio manager and play the spell pickup sound with it
+                    FindObjectOfType<AudioManager>().Play("SpellPickup");
+
                     break;
                 }
             }

@@ -158,6 +158,9 @@ public class GameManager : MonoBehaviour
             level ++;
             experience -= 20;
             weapon.UpgradeWeapon();
+
+            // Find the audio manager and play the levelup sound with it
+            FindObjectOfType<AudioManager>().Play("LevelupSound");
         }
         levelText.AddExperience();
     }

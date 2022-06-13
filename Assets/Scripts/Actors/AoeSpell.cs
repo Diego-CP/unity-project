@@ -86,6 +86,9 @@ public class AoeSpell : Collectable {
 
                     // Reduce the player faith by the cost of the spell
                     GameManager.instance.player.UseFaith(faithCost);
+
+                    // Find the audio manager and play the AOE spell sound with it
+                    FindObjectOfType<AudioManager>().Play("AoeSpellSound");
                 }
                 else
                 {

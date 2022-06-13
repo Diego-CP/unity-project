@@ -19,6 +19,8 @@ public class Chest : Collectable {
             GameManager.instance.gold += goldAmount;
             // Display the amount of gold gained on-screen
             GameManager.instance.ShowText("+ " + goldAmount + " Gold!", 25, Color.yellow, transform.position, Vector3.up * 20, 1.5f);
+            // Find the audio manager and play the chest pickup sound with it
+            FindObjectOfType<AudioManager>().Play("ChestPickup");
         }
     }
 }
