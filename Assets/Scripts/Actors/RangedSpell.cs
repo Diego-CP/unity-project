@@ -29,8 +29,8 @@ public class RangedSpell : Collectable {
     private void getPlayer()
     {
         // Assign the position of the player through GameManager
-            if(GameObject.Find("Player") != null)
-                inventory = GameManager.instance.player.gameObject.GetComponent<SpellInventory>();
+            if(GameObject.Find("Player") != null && GameObject.Find("SpawnPoint"))
+                inventory = GameObject.Find("Player").gameObject.GetComponent<SpellInventory>();
 
             
         

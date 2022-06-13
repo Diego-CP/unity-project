@@ -52,7 +52,7 @@ public class MonsterSpawner : MonoBehaviour
     private void getPlayer()
     {
         // Assign the position of the player through GameManager
-        if (GameObject.Find("SpawnPoint") != null)
+        if (GameObject.Find("SpawnPoint") != null && GameObject.Find("Player"))
         {
             spawn = GameManager.instance.spawnPoint;
             playerTransform = spawn.transform.GetChild(0).gameObject.transform;

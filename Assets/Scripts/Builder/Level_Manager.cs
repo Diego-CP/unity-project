@@ -46,7 +46,7 @@ public class Level_Manager : MonoBehaviour
 
         sceneName = SceneManager.GetActiveScene().name;
         reload = null;
-        Debug.Log(sceneName);
+
         layers.Clear();
         if (instance == null) instance = this;
         else Destroy(this);//clear lvl on start
@@ -155,11 +155,11 @@ public class Level_Manager : MonoBehaviour
         //save the data as a json
         string json = JsonUtility.ToJson(levelData, true);
         level = json;
-        Debug.Log(level);
+   
         
         reload = json;
         //debug
-        Debug.Log(reload);
+       
         Debug.Log("Level was saved");
     }
 
@@ -170,7 +170,8 @@ public class Level_Manager : MonoBehaviour
 
     public void LoadLevel(string dlFile, bool def = true)
     {
-        foreach(Tilemap tm in tilemaps)
+       
+        foreach (Tilemap tm in tilemaps)
         {
             tm.ClearAllTiles();
         }
@@ -224,10 +225,16 @@ public class Level_Manager : MonoBehaviour
         }
 
         item_creation(levelData);
-        
         Debug.Log("Level was loaded");
+        Invoke("Refill", 0.01f);
+
     }
 
+    void Refill()
+    {
+        GameManager.instance.player.Heal(GameManager.instance.player.maxHitpoint);
+        GameManager.instance.player.GainFaith(GameManager.instance.player.maxFaith);
+    }
     void item_creation(LevelData levelData)
     {
         foreach (var item in levelData.items)

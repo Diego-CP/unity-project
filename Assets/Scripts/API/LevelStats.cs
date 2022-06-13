@@ -102,12 +102,12 @@ public class LevelStats : MonoBehaviour
     {
         User usr = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr;
         int lvlid = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().currentLevelId;
-        Debug.Log(url);
+ 
         using (UnityWebRequest www = UnityWebRequest.Put(url, contents))
         {
             www.method = "PUT";
             www.SetRequestHeader("Content-Type", "application/json");
-            Debug.Log(contents);
+        
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)

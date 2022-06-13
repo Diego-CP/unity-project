@@ -44,7 +44,7 @@ public class Enemy : Mover {
         // Assign the position of the player through GameManager
         if(GameObject.Find("SpawnPoint") != null && GameObject.Find("Player") != null)
         {
-            spawn = GameManager.instance.spawnPoint;
+            spawn = GameObject.Find("SpawnPoint");
             playerTransform = spawn.transform.GetChild(0).gameObject.transform;
         }
     }
@@ -101,10 +101,6 @@ public class Enemy : Mover {
                 // Clear the array
                 hits[i] = null;
             }
-        }
-        else
-        {
-            getPlayer();
         }
     }
 
