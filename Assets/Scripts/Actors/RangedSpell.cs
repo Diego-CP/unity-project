@@ -17,7 +17,7 @@ public class RangedSpell : Collectable {
         
             
     }
-    private void Update()
+    public override void Update()
     {
         base.Update();
         if(inventory == null)

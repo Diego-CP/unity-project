@@ -17,7 +17,7 @@ public class AoeSpell : Collectable {
         lastUse = 1.0f;
         getPlayer();
     }
-    private void Update()
+    public override void Update()
     {
         base.Update();
         if(inventory == null)

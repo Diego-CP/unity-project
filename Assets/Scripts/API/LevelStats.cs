@@ -57,8 +57,21 @@ public class LevelStats : MonoBehaviour
                         sendSeg = seg;
                     sendVictor += vic;
                     sendDeath += deth;
-                    string postJson = "{" + $"\"time\":{sendSeg},\"victories\":{sendVictor},\"deaths\":{sendDeath}" + "}";
-                    StartCoroutine(Up(postJson));
+                    string postJson;
+                    string url;
+                    if(vic == 1)
+                    {
+                        postJson = "{" + $"\"time\":{sendSeg},\"victories\":{sendVictor}" + "}";
+                        url = $"https://api-heavent.herokuapp.com/level_stats/wins/{usr.id}/{lvlid}";
+                    }
+              
+                    else
+                    {
+                        postJson = "{" + $"\"deaths\":{sendDeath}" + "}";
+                        url = $"https://api-heavent.herokuapp.com/level_stats/deaths/{usr.id}/{lvlid}";
+                    }
+                    
+                    StartCoroutine(Up(postJson,url));
 
                 }
             }
@@ -85,12 +98,12 @@ public class LevelStats : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator Up(string contents)
+    IEnumerator Up(string contents, string url)
     {
         User usr = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().usr;
         int lvlid = GameObject.Find("Retain").gameObject.GetComponent<RetainOnLoad>().currentLevelId;
-        Debug.Log(contents);
-        using (UnityWebRequest www = UnityWebRequest.Put($"https://api-heavent.herokuapp.com/level_stats/{usr.id}/{lvlid}", contents))
+        Debug.Log(url);
+        using (UnityWebRequest www = UnityWebRequest.Put(url, contents))
         {
             www.method = "PUT";
             www.SetRequestHeader("Content-Type", "application/json");

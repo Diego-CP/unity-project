@@ -31,7 +31,7 @@ public class Weapon : Collidable
         anim = GetComponent<Animator>();
     }
 
-    protected override void Update() {
+    public override void Update() {
         base.Update();
 
         // Check if the player can swing (using spacebar)

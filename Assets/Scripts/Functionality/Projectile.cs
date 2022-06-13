@@ -13,7 +13,7 @@ public class Projectile : Collidable {
         Invoke("DestroyProjectile", lifeTime);
     }
 
-    protected override void Update() {
+    public override void Update() {
         base.Update();
         transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
