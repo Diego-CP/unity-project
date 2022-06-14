@@ -68,6 +68,7 @@ public class Player : Mover
 
         if (Input.GetKeyDown(KeyCode.J) && !base.dash)
         {
+            FindObjectOfType<AudioManager>().Play("BasicAttack");
             StartCoroutine(base.Dash());
         }
     }

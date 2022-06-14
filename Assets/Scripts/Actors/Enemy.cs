@@ -102,6 +102,10 @@ public class Enemy : Mover {
                 hits[i] = null;
             }
         }
+        else
+        {
+            getPlayer();
+        }
     }
 
     protected override void Death() {
