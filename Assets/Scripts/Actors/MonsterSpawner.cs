@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class MonsterSpawner : MonoBehaviour
     private float spawnTime;
     private float spawnWait = 2.5f;
     public GameObject Monster;
+    public TMP_InputField MonsterInput, SpawnEdit;
+    public MonsterSpawner cSpawner;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -57,5 +62,21 @@ public class MonsterSpawner : MonoBehaviour
             spawn = GameManager.instance.spawnPoint;
             playerTransform = spawn.transform.GetChild(0).gameObject.transform;
         }
+    }
+    public void SetQuantity()
+    {
+        int check = 0;
+        if(Int32.TryParse(MonsterInput.text, out check))
+        {
+            
+            cSpawner.quantity = check;
+        }
+        else
+        {
+           
+            cSpawner.quantity = 3;
+        }
+        GameObject.Find("SpawnEdit").SetActive(false);
+        
     }
 }

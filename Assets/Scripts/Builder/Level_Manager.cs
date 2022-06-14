@@ -27,10 +27,9 @@ public class Level_Manager : MonoBehaviour
     public Dictionary<int, Tilemap> layers = new Dictionary<int, Tilemap>();
     public string level;
     public string reload;
-    public GameObject currentInstance;
-    public GameObject emptyParent;
-    public GameObject lvlStatsPrefab;
-    private GameObject i;
+    public GameObject currentInstance, emptyParent, lvlStatsPrefab;
+    private GameObject i; 
+    public GameObject SpawnEdit, SpawnSet;
 
     // Retrieve the name of this scene.
     string sceneName;
@@ -88,9 +87,20 @@ public class Level_Manager : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && itemButtons[currentButton].clicked)
             {
                 itemButtons[currentButton].clicked = false;
-                GameObject item = Instantiate(itemPrefabs[currentButton], new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
-                item.name = item.name.Replace("(Clone)", "");
-                item.transform.SetParent(currentInstance.transform);
+                if (itemPrefabs[currentButton].name == "MonsterSpawner")
+                {
+                    SpawnEdit.SetActive(true);
+                    var monster = Instantiate(itemPrefabs[currentButton], new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
+                    SpawnSet.gameObject.GetComponent<MonsterSpawner>().cSpawner = monster.gameObject.GetComponent<MonsterSpawner>();
+                    monster.name = monster.name.Replace("(Clone)", "");
+                    monster.transform.SetParent(currentInstance.transform);
+                }
+                else
+                {
+                    GameObject item = Instantiate(itemPrefabs[currentButton], new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
+                    item.name = item.name.Replace("(Clone)", "");
+                    item.transform.SetParent(currentInstance.transform);
+                }
             }
 
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.A)) 
