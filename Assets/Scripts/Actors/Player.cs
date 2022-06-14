@@ -37,6 +37,7 @@ public class Player : Mover
                 Attack();
         }
 
+
         if(Input.GetKeyDown(KeyCode.Alpha8)) {
             if(spellInv.isFull[0]) {
                 Collectable spell = spellInv.slots[0].GetComponent<Collectable>();
@@ -61,6 +62,11 @@ public class Player : Mover
 
         if(Input.GetKeyDown(KeyCode.Alpha5)) {
             spellInv.RemoveSpell(1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.J) && !base.dash)
+        {
+            StartCoroutine(base.Dash());
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 // abstract means that it has to be inherited from, it cannot be assigned to an object
 public abstract class Mover : Fighter {
@@ -10,15 +11,38 @@ public abstract class Mover : Fighter {
     public float ySpeed = 0.75f;
     public float xSpeed = 1.0f;
 
+    public bool dash = false;
+
+
+
+
     protected virtual void Start() {
-        boxCollider = GetComponent<BoxCollider2D>();
-        
+        boxCollider = GetComponent<BoxCollider2D>();   
+    }
+
+    
+    
+    public IEnumerator Dash()
+    {
+        xSpeed = 5;
+        ySpeed = 5;
+        dash = true;
+        yield return new WaitForSeconds(0.08f);
+        xSpeed = 0.75f;
+        ySpeed = 1;
+        yield return new WaitForSeconds(1.5f);
+        dash = false;
     }
 
 
-    protected virtual void UpdateMotor(Vector3 input) {
+    protected virtual void UpdateMotor(Vector3 input) 
+    {
+        
         moveDelta = new Vector3(input.x * xSpeed, input.y * ySpeed, 0);
         float horizontalInput = Input.GetAxis("Horizontal");
+
+
+
 
         if (moveDelta.x > 0) {
             transform.localScale = Vector3.one;
@@ -26,6 +50,7 @@ public abstract class Mover : Fighter {
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
+       
         // Add push vector
         moveDelta += pushDirection;
 

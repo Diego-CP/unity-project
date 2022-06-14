@@ -107,6 +107,8 @@ MonoBehaviour:
   pushRecoverySpeed: 0.5
   ySpeed: 0.75
   xSpeed: 1
+  dashLength: 0.5
+  dashCooldown: 1
   faith: 10
   maxFaith: 10
   Weapon: {fileID: 7736999751082003687, guid: 5464696015ad7c345a71c19df5088d1b, type: 3}
