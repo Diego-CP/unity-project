@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     // Once the game starts up, define the instance of GameManager as this
     private void Awake() 
     {
-        
         // If there is already a GameManager in the loaded scene, destroy the new one and keep the old one
         if (GameManager.instance != null) 
         {
@@ -35,18 +34,13 @@ public class GameManager : MonoBehaviour
         // Once the scene is loaded, SceneManager will go through all functions and execute them,
         //  so we add the LoadState function at the end
         SceneManager.sceneLoaded += LoadState;
-
-
-        
     }
-
-   
-
 
     private void Update()
     {
         getValues();
     }
+
     private void Start()    
     {
         Invoke("getValues",0);
@@ -68,8 +62,8 @@ public class GameManager : MonoBehaviour
                 player = spawnPoint.transform.GetChild(0).gameObject.GetComponent<Player>();
             }
 
-        //if (weapon == null && player != null && spawnPoint != null)
-           // weapon = player.transform.GetChild(0).gameObject;
+        if (weapon == null && player != null && spawnPoint != null)
+            weapon = GameObject.Find("Weapon").gameObject.GetComponent<Weapon>();
             
         if (si == null && GameObject.Find("Player") != null)
             si = GameObject.Find("Player").GetComponent<SpellInventory>();
@@ -90,13 +84,12 @@ public class GameManager : MonoBehaviour
             play.gameObject.GetComponent<Player>().lvlStats = lStats;
             play.gameObject.GetComponent<VictoryCheck>().lvlStats = lStats;
         }
-           
 
         if (camMotor == null && GameObject.FindGameObjectWithTag("MainCamera") != null)
             camMotor = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMotor>();
         
 
-        if(camMotor.lookAt == null && GameObject.Find("Player") != null)
+        if (camMotor.lookAt == null && GameObject.Find("Player") != null)
             camMotor.lookAt = GameObject.Find("Player").transform;
 
         if (ui == null && GameObject.Find("UI") != null)
@@ -110,6 +103,9 @@ public class GameManager : MonoBehaviour
 
         if (floatingTextManager == null && GameObject.Find("FloatingTextManager") != null)
             floatingTextManager = GameObject.Find("FloatingTextManager").gameObject.GetComponent<FloatingTextManager>();
+
+        if (goldText == null && GameObject.Find("GoldAmount") != null)
+            goldText = GameObject.Find("GoldAmount").GetComponent<GoldText>();
     }
 
     // References
@@ -154,7 +150,8 @@ public class GameManager : MonoBehaviour
     public void OnExperienceChange() 
     {
         // Increase level if the player gains more than 20 xp
-        if(experience >= 20) {
+        if(experience >= 20) 
+        {
             level ++;
             experience -= 20;
             weapon.UpgradeWeapon();
@@ -162,6 +159,7 @@ public class GameManager : MonoBehaviour
             // Find the audio manager and play the levelup sound with it
             FindObjectOfType<AudioManager>().Play("LevelupSound");
         }
+
         levelText.AddExperience();
     }
 
