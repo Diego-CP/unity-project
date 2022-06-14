@@ -16,6 +16,8 @@ public class Boss : Enemy {
     protected override void Death()
     {
         base.Death();
+        // Find the audio manager and play the boss death sound with it
+        FindObjectOfType<AudioManager>().Play("BossDeath");
         GameManager.instance.player.GetComponent<VictoryCheck>().DeadBoss(gameObject);
     }
 }

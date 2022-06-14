@@ -11,5 +11,7 @@ public class HealingPotion : Collectable {
         GameManager.instance.player.Heal(hpAmount);
         // Display the amount of HP gained on-screen
         GameManager.instance.ShowText("+ " + hpAmount + " HP", 25, Color.red, transform.position, Vector3.up * 20, 1.5f);
+        // Find the audio manager and play the spell pickup sound with it
+        FindObjectOfType<AudioManager>().Play("SpellPickup");
     }
 }

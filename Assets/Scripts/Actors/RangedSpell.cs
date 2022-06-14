@@ -65,6 +65,9 @@ public class RangedSpell : Collectable {
 
                     // Reduce the player faith by the cost of the spell
                     GameManager.instance.player.UseFaith(faithCost);
+
+                    // Find the audio manager and play the ranged spell sound with it
+                    FindObjectOfType<AudioManager>().Play("RangedSpellSound");
                 }
                 else
                 {

@@ -34,7 +34,9 @@ public class Player : Mover
 
 
         if(Input.GetKeyDown(KeyCode.U)) {
-                Attack();
+            Attack();
+            // Find the audio manager and play the basic attack sound with it
+            FindObjectOfType<AudioManager>().Play("BasicAttack");
         }
 
 

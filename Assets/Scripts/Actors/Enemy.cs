@@ -109,6 +109,9 @@ public class Enemy : Mover {
         Destroy(gameObject);
         GameManager.instance.experience += xpValue;
         GameManager.instance.ShowText("+ " + xpValue + " XP", 25, Color.green, transform.position, Vector3.up * 20, 1.5f);
+
+        // Find the audio manager and play the enemy death sound with it
+        FindObjectOfType<AudioManager>().Play("EnemyDeath");
     }
 
 }

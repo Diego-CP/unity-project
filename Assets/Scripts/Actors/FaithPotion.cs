@@ -12,5 +12,7 @@ public class FaithPotion : Collectable {
         GameManager.instance.player.GainFaith(faithAmount);
         // Display the amount of HP gained on-screen
         GameManager.instance.ShowText("+ " + faithAmount + " Faith", 25, Color.blue, transform.position, Vector3.up * 20, 1.5f);
+        // Find the audio manager and play the spell pickup sound with it
+        FindObjectOfType<AudioManager>().Play("SpellPickup");
     }
 }

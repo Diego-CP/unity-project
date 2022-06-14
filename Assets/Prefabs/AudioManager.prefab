@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5113189800097347601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5113189800097347600}
+  - component: {fileID: 8360119621957256113}
+  - component: {fileID: 7268663165505530518}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5113189800097347600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113189800097347601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.19352892, y: -0.5709056, z: 0.020564094}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8360119621957256113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113189800097347601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45d54274b64c854cbe2341421157b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clip: {fileID: 8300000, guid: dc786c551dea0f648bc206bc286cb117, type: 3}
+    name: AoeSpellSound
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 1d93acee65eaee14ea198aab4e499dc7, type: 3}
+    name: BasicAttack
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 2d758d1dee984f448af2ffd44b110f72, type: 3}
+    name: BossDeath
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 94cba45ee3d9b964388019df6b0a443b, type: 3}
+    name: ChestPickup
+    volume: 0.4
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e026920bd79510f46adc4ee5f0caa59e, type: 3}
+    name: CrateDestroy
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 1035c967415656d4aa0d13b791501b75, type: 3}
+    name: EnemyDeath
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 117fc9b7b706bff4e8ac6a58f128bb51, type: 3}
+    name: LevelupSound
+    volume: 0.9
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: abd4baa83c430aa418e0ab06de6ece9d, type: 3}
+    name: MenuBeep
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 5aca997de1a754f45b962bd8bb3053a5, type: 3}
+    name: PlayerDeath
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 229d9cfd55972cf4abff431d39f9dd7c, type: 3}
+    name: RangedSpellSound
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f421863279fa5084ab282e332e2f1cad, type: 3}
+    name: RecieveDamage
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 695be5d7140eeee44b242d38f22da954, type: 3}
+    name: SpellPickup
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4039cf91e8f64c34a908ec917fafeae0, type: 3}
+    name: VictorySound
+    volume: 0.596
+    pitch: 1
+    source: {fileID: 0}
+--- !u!114 &7268663165505530518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113189800097347601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d199b5b64423f54286d5e7c50865819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
